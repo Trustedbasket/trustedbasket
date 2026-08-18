@@ -85,7 +85,7 @@
         .chat-footer input { flex: 1; padding: 8px 12px; border: 1px solid #fbcfe8; border-radius: 6px; outline: none; }
         .chat-footer button { background: var(--primary); color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: 600; }
 
-        /* T&C Modal */
+        /* Modals (T&C and About Us) */
         .tc-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 600px; background: white; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); z-index: 2000; display: none; padding: 25px; max-height: 80vh; overflow-y: auto; }
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1999; display: none; }
     </style>
@@ -98,6 +98,7 @@
                 <button class="hamburger-btn" onclick="toggleNavMenu()">☰</button>
                 <div class="dropdown-menu" id="navDropdown">
                     <a onclick="showHome()">🏠 Home</a>
+                    <a onclick="showAbout()">ℹ️ About Us</a>
                     <a onclick="showTC()">📜 Terms & Conditions</a>
                 </div>
             </div>
@@ -184,6 +185,11 @@
     </div>
 
     <div class="banner-container">
+        <section class="donation-banner">
+            <h3>💖 Donation & Social Welfare</h3>
+            <p>सहयोग सीधे तौर पर जरूरतमंद छात्रों की शिक्षा और समाज की भलाई पर खर्च किया जाएगा।</p>
+            <a href="#" class="btn-donate">💖 Donate</a>
+        </section>
         <section class="wa-banner">
             <h3>⭐ WhatsApp Alerts (वैकल्पिक)</h3>
             <p>तुरंत और केवल अपनी पसंदीदा रुचियों की ताज़ा न्यूज़ WhatsApp पर पाएं। <b>मासिक चार्ज ₹49*</b> केवल Meta API सर्वर चार्ज हेतु है।</p>
@@ -193,11 +199,6 @@
             <h3>⭐ Telegram Bot (फ्री)</h3>
             <p>हमारी फ्री कम्युनिटी से जुड़कर सीधे अपने फोन पर फास्ट अलर्ट्स प्राप्त करें।</p>
             <a href="https://t.me/Trustedbasket_bot" target="_blank" class="btn-telegram">✈️ Join Telegram Bot</a>
-        </section>
-        <section class="donation-banner">
-            <h3>💖 Donation & Social Welfare</h3>
-            <p>सहयोग सीधे तौर पर जरूरतमंद छात्रों की शिक्षा और समाज की भलाई पर खर्च किया जाएगा।</p>
-            <a href="#" class="btn-donate">💖 Donate</a>
         </section>
     </div>
 
@@ -221,7 +222,19 @@
     </div>
     <button class="ai-help-btn" onclick="toggleChat()">🤖 AI Help Box (कुछ भी पूछें)</button>
 
-    <div class="modal-overlay" id="tcOverlay" onclick="closeTC()"></div>
+    <div class="modal-overlay" id="tcOverlay" onclick="closeModals()"></div>
+    
+    <div class="tc-modal" id="aboutModal">
+        <h3 style="color: var(--dark-pink); margin-top: 0;">ℹ️ About TrustedBasket</h3>
+        <hr style="border: 0; border-top: 1px solid #fce7f3; margin-bottom: 15px;">
+        <div style="font-size: 13.5px; color: #475569; line-height: 1.7;">
+            <p><b>हमारा विज़न (Our Vision):</b> इंटरनेट पर मौजूद असीमित और भ्रामक जानकारी (Noise) के बीच से छात्रों और पेशेवरों के लिए सबसे प्रामाणिक, सटीक और जरूरी जानकारी छांटकर लाना।</p>
+            <p><b>हम पर विश्वास क्यों करें? (Why Trust Us?):</b> हम केवल भारत सरकार के आधिकारिक स्रोतों (PIB), मान्यता प्राप्त संस्थाओं (RBI, WHO) और प्रतिष्ठित पोर्टल्स से ही अपना डेटा प्राप्त करते हैं। हमारा एडवांस्ड AI बिना किसी इंसानी पक्षपात के आपको सीधा और स्पष्ट निष्कर्ष (Summary) देता है।</p>
+            <p><b>हमारा लक्ष्य:</b> आपका कीमती समय बचाना और आपको हमेशा सही जानकारी के साथ सबसे आगे रखना।</p>
+        </div>
+        <button onclick="closeModals()" style="background: var(--dark-pink); color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; float: right; margin-top: 10px;">बंद करें (Close)</button>
+    </div>
+
     <div class="tc-modal" id="tcModal">
         <h3 style="color: var(--dark-pink); margin-top: 0;">📜 Terms & Conditions (नियम एवं शर्तें)</h3>
         <hr style="border: 0; border-top: 1px solid #fce7f3; margin-bottom: 15px;">
@@ -231,11 +244,11 @@
             <p><b>3. Messaging & API Charges (*):</b> WhatsApp अलर्ट्स सेवा वैकल्पिक है। ₹49/- का मासिक शुल्क विशुद्ध रूप से Meta WhatsApp Business API गेटवे का तकनीकी संचरण शुल्क है।</p>
             <p><b>4. Verified Sources (*):</b> डेटा केवल PIB, RBI, FSSAI, UPSC, SSC आदि आधिकारिक सार्वजनिक डोमेन से संकलित किया जाता है।</p>
         </div>
-        <button onclick="closeTC()" style="background: var(--dark-pink); color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; float: right; margin-top: 10px;">बंद करें (Close)</button>
+        <button onclick="closeModals()" style="background: var(--dark-pink); color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; float: right; margin-top: 10px;">बंद करें (Close)</button>
     </div>
 
     <script>
-        // Yahan maine aapka diya hua API URL set kar diya hai!
+        // API URL
         const API_URL = "https://script.google.com/macros/s/AKfycbxsZUO5AyLKL0Zc1Wh0HL05HDFeevJYBYHlhBn6MJzGAVvc54R2DapF2b8xXq9xE7IrxQ/exec";
         
         let allNewsData = [];
@@ -245,14 +258,21 @@
             menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
         }
 
+        // Modals Management
         function showTC() {
             document.getElementById('tcOverlay').style.display = 'block';
             document.getElementById('tcModal').style.display = 'block';
             document.getElementById('navDropdown').style.display = 'none';
         }
-        function closeTC() {
+        function showAbout() {
+            document.getElementById('tcOverlay').style.display = 'block';
+            document.getElementById('aboutModal').style.display = 'block';
+            document.getElementById('navDropdown').style.display = 'none';
+        }
+        function closeModals() {
             document.getElementById('tcOverlay').style.display = 'none';
             document.getElementById('tcModal').style.display = 'none';
+            document.getElementById('aboutModal').style.display = 'none';
         }
 
         function calculateAge() {
