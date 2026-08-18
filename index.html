@@ -38,8 +38,15 @@
         .logo span { color: var(--accent); }
         .sub-logo-info { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
         .tagline { font-size: 12px; font-weight: 600; color: #fbcfe8; letter-spacing: 0.5px; }
+        
         .nav-right-items { display: flex; align-items: center; margin-left: auto; }
-        .lang-selector { background: white; color: var(--dark-pink); border: 2px solid var(--accent); padding: 8px 15px; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; outline: none; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        
+        /* Google Translate Custom Design */
+        #google_translate_element select { background: white; color: var(--dark-pink); border: 2px solid var(--accent); padding: 8px 10px; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; outline: none; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .goog-te-gadget { color: transparent !important; font-size: 0px !important; }
+        .goog-te-gadget .goog-logo-link { display: none !important; }
+        .goog-te-banner-frame { display: none !important; }
+        body { top: 0px !important; }
 
         /* Hero Section */
         .hero { background: white; padding: 60px 5%; text-align: center; border-bottom: 2px solid #fce7f3; }
@@ -142,10 +149,7 @@
             </div>
         </div>
         <div class="nav-right-items">
-            <select class="lang-selector" id="langSelect">
-                <option value="hi">हिंदी</option>
-                <option value="en">English</option>
-            </select>
+            <div id="google_translate_element"></div>
         </div>
     </nav>
 
@@ -230,6 +234,17 @@
     </div>
 
     <button class="ai-help-btn" onclick="toggleChat()">🤖 AI Help Box</button>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'hi', 
+                includedLanguages: 'hi,en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <script>
         // 1. Navigation Menu
@@ -326,7 +341,6 @@
                 chatBody.scrollTop = chatBody.scrollHeight;
 
                 const apiKey = "AQ.Ab8RN6LTz_OtNxIVC1U3dXb3h7dZWhRlSsy_mA6XcaiyfboaCQ"; 
-                // Model changed to 3.6-flash to match user's working account settings
                 const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${apiKey}`;
                 
                 try {
