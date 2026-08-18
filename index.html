@@ -572,4 +572,86 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrustedBasket - Govt, Banking & Job Alerts</title>
+    <style>
+        /* वेबसाइट का डिज़ाइन (CSS) */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; }
+        .header { text-align: center; margin-bottom: 40px; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .header h1 { color: #1a73e8; margin: 0 0 10px 0; }
+        .header p { color: #5f6368; margin: 0; font-size: 16px; }
+        
+        .news-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; max-width: 1200px; margin: 0 auto; }
+        
+        .news-card { background: white; border-radius: 12px; padding: 20px; width: 320px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.2s; display: flex; flex-direction: column; }
+        .news-card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
+        
+        .category-badge { font-size: 12px; font-weight: bold; color: white; background: #1a73e8; padding: 5px 10px; border-radius: 20px; align-self: flex-start; margin-bottom: 12px; }
+        .news-title { font-size: 18px; font-weight: bold; margin-bottom: 10px; color: #202124; line-height: 1.4; }
+        .news-date { font-size: 12px; color: #80868b; margin-bottom: 15px; }
+        .news-summary { font-size: 14px; color: #4d5156; margin-bottom: 20px; line-height: 1.6; flex-grow: 1; }
+        
+        .read-more { text-decoration: none; color: #1a73e8; font-weight: bold; text-align: center; border-top: 1px solid #eee; padding-top: 15px; }
+        .loading { text-align: center; font-size: 18px; color: #1a73e8; font-weight: bold; margin-top: 50px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>TrustedBasket</h1>
+        <p>छात्रों और पेशेवरों के लिए सटीक सरकारी, बैंकिंग और MSME अपडेट्स</p>
+    </div>
+
+    <div id="loading" class="loading">ताज़ा ख़बरें लोड हो रही हैं... ⏳</div>
     
+    <div id="news-container" class="news-container"></div>
+
+    <script>
+        // 👇 यहाँ अपना Deploy URL (Web App URL) डालें 👇
+        const API_URL = "https://script.google.com/macros/s/AKfycbxsZUO5AyLKL0Zc1Wh0HL05HDFeevJYBYHlhBn6MJzGAVvc54R2DapF2b8xXq9xE7IrxQ/exec"; 
+
+        async function fetchNews() {
+            try {
+                // API से डेटा मंगाना
+                const response = await fetch(API_URL);
+                const data = await response.json();
+                
+                // लोडिंग टेक्स्ट हटाना
+                document.getElementById("loading").style.display = "none";
+                const container = document.getElementById("news-container");
+                
+                // हर खबर के लिए एक नया कार्ड बनाना
+                data.forEach(item => {
+                    const card = document.createElement("div");
+                    card.className = "news-card";
+                    
+                    // AI Summary में Markdown (**) को हटाकर साफ करना
+                    const cleanSummary = item.summary.replace(/\*\*/g, '').replace(/\*/g, '• ');
+
+                    card.innerHTML = `
+                        <div class="category-badge">${item.category}</div>
+                        <div class="news-title">${item.title}</div>
+                        <div class="news-date">📅 ${item.date}</div>
+                        <div class="news-summary">${cleanSummary}</div>
+                        <a href="${item.link}" target="_blank" class="read-more">पूरी खबर पढ़ें ➔</a>
+                    `;
+                    container.appendChild(card);
+                });
+            } catch (error) {
+                document.getElementById("loading").innerText = "सर्वर से कनेक्ट करने में समस्या आई। कृपया बाद में प्रयास करें।";
+                console.error("Error fetching news:", error);
+            }
+        }
+
+        // वेबसाइट खुलते ही फंक्शन चलाएं
+        fetchNews();
+    </script>
+
+</body>
+</html>
+
+
