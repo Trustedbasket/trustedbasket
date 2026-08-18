@@ -6,7 +6,7 @@
     <title>TrustedBasket | Free* AI Alert Platform</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     
-    <!-- 🚀 Google Analytics Code (Active) -->
+    <!-- 🚀 Google Analytics Code -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-M8NL11TPWH"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -15,7 +15,7 @@
       gtag('config', 'G-M8NL11TPWH');
     </script>
 
-    <!-- 🚀 OneSignal Web Push Notifications (Active) -->
+    <!-- 🚀 OneSignal Web Push Notifications -->
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script>
       window.OneSignalDeferred = window.OneSignalDeferred || [];
@@ -47,7 +47,6 @@
         
         #google_translate_element select { background: white; color: var(--dark-pink); border: 2px solid var(--accent); padding: 8px 10px; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; outline: none; }
         
-        /* 🔥 Google Translate Popup Remover 🔥 */
         .goog-te-balloon-frame { display: none !important; }
         .goog-tooltip, #goog-gt-tt, .goog-tooltip:hover { display: none !important; visibility: hidden !important; }
         .goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
@@ -332,7 +331,7 @@
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <script>
-        // 🚀 Real API URL Re-added
+        // 🚀 Real API URL
         const API_URL = "https://script.google.com/macros/s/AKfycbxsZUO5AyLKL0Zc1Wh0HL05HDFeevJYBYHlhBn6MJzGAVvc54R2DapF2b8xXq9xE7IrxQ/exec";
         let allNewsData = [];
 
@@ -437,7 +436,7 @@
                 <div class="news-summary">${cleanSummary}</div>
                 <div class="card-actions">
                     <button class="action-btn btn-save" onclick='toggleBookmark(${JSON.stringify(item).replace(/'/g, "&#39;")}, this)'>${saveBtnText}</button>
-                    <button class="action-btn btn-share" onclick="shareNews('${safeTitle}', '${item.link}')">🔗 Share</button>
+                    <button class="action-btn btn-share" onclick="shareNews('${safeTitle}')">🔗 Share</button>
                     <a href="${item.link}" target="_blank" class="action-btn btn-read">मूल खबर ➔</a>
                 </div>
             `;
@@ -484,13 +483,15 @@
             });
         }
 
-        // Share functionality
-        function shareNews(title, link) {
+        // 🚀 Share Link Logic (अब आपकी TrustedBasket वेबसाइट का लिंक शेयर होगा!)
+        function shareNews(title) {
+            const siteUrl = window.location.href.split('?')[0].split('#')[0];
+            const shareText = title + "\n\nपूरी खबर और AI विश्लेषण देखने के लिए TrustedBasket पर आएं:\n" + siteUrl;
             if (navigator.share) {
-                navigator.share({ title: 'TrustedBasket', text: title, url: link });
+                navigator.share({ title: 'TrustedBasket Updates', text: shareText, url: siteUrl });
             } else {
-                navigator.clipboard.writeText(title + " - " + link);
-                alert("लिंक कॉपी कर लिया गया है! (Link Copied)");
+                navigator.clipboard.writeText(shareText);
+                alert("वेबसाइट लिंक कॉपी कर लिया गया है! (Link Copied)");
             }
         }
 
