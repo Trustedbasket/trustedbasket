@@ -6,7 +6,7 @@
     <title>TrustedBasket | Free* AI Alert Platform</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     
-    <!-- 🚀 Google Analytics Code -->
+    <!-- 🚀 Google Analytics Code (Active) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-M8NL11TPWH"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -15,7 +15,7 @@
       gtag('config', 'G-M8NL11TPWH');
     </script>
 
-    <!-- 🚀 OneSignal Web Push Notifications -->
+    <!-- 🚀 OneSignal Web Push Notifications (Active) -->
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script>
       window.OneSignalDeferred = window.OneSignalDeferred || [];
@@ -23,7 +23,6 @@
         OneSignal.init({ appId: "2e1e6b6f-0d7d-45ca-a784-b4e6c9ab13c1" });
       });
     </script>
-    <!-- ========================================== -->
 
     <style>
         html, body { margin: 0; padding: 0; width: 100%; overflow-x: hidden; }
@@ -210,7 +209,6 @@
                     <b>🏭 MSME</b><br>
                     <span style="font-size: 11.5px; color: #64748b;">GST, FSSAI & Factory Rules</span>
                 </div>
-                <!-- 🚀 WHO: No Translate -->
                 <div class="chip notranslate" onclick="openCategoryPage('WHO')">
                     <b>🩺 WHO</b><br>
                     <span style="font-size: 11.5px; color: #64748b;">Global Health Advisories</span>
@@ -238,16 +236,15 @@
         <div class="news-grid" id="savedNewsGrid"></div>
     </div>
 
-    <!-- Banners -->
     <div class="banner-container">
-        <!-- 💰 Payment Landmark -->
+        <!-- 💰💰 YAHAN APNA PAYMENT LINK DAALEIN 💰💰 -->
         <section class="donation-banner">
             <h3>💖 Support* & Social Welfare</h3>
             <p>सहयोग सीधे तौर पर जरूरतमंद छात्रों की शिक्षा और समाज की भलाई पर खर्च किया जाएगा। इसके अतिरिक्त, इस सहयोग का उपयोग इस फ्री* सॉफ्टवेयर को सुचारू रूप से चलाने (सर्वर और मेंटेनेंस) में किया जाएगा। पारदर्शिता के लिए खर्च का विवरण सार्वजनिक किया जाएगा*। (यह सहयोग पूरी तरह स्वैच्छिक* है)।</p>
             <a href="APNA_PAYMENT_LINK_YAHAN_DAALEIN" target="_blank" class="btn-donate">💖 Support Us</a>
         </section>
         
-        <!-- 🟢 WhatsApp Landmark -->
+        <!-- 🟢🟢 YAHAN APNA WHATSAPP LINK DAALEIN 🟢🟢 -->
         <section class="wa-banner">
             <h3>⭐ WhatsApp Alerts (वैकल्पिक)</h3>
             <p>तुरंत और केवल अपनी पसंदीदा रुचियों की ताज़ा न्यूज़ WhatsApp पर पाएं। <b>मासिक चार्ज ₹49*</b> केवल Meta API सर्वर चार्ज हेतु है।</p>
@@ -335,15 +332,27 @@
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <script>
-        // 🚀 API URL
+        // 🚀 Real API URL Re-added
         const API_URL = "https://script.google.com/macros/s/AKfycbxsZUO5AyLKL0Zc1Wh0HL05HDFeevJYBYHlhBn6MJzGAVvc54R2DapF2b8xXq9xE7IrxQ/exec";
         let allNewsData = [];
 
-        // Hamburger Menu - Fix applied: Closes automatically
+        // 🚀 Dropdown Menu Logic (Click outside to close)
         function toggleNavMenu() {
             const menu = document.getElementById('navDropdown');
             menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
         }
+
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('navDropdown');
+            const hamburgerBtn = document.querySelector('.hamburger-btn');
+            
+            if (menu.style.display === 'flex') {
+                if (!menu.contains(event.target) && !hamburgerBtn.contains(event.target)) {
+                    menu.style.display = 'none';
+                }
+            }
+        });
+
         function closeDropdown() {
             document.getElementById('navDropdown').style.display = 'none';
         }
@@ -410,7 +419,7 @@
             });
         }
 
-        // 🚀 News Card Generator (With Save & Remove Option)
+        // 🚀 Create News Card (With Save/Remove Feature)
         function createNewsCard(item) {
             const card = document.createElement("div");
             card.className = "news-card";
@@ -435,7 +444,7 @@
             return card;
         }
 
-        // 🚀 Bookmark / Remove Logic
+        // 🚀 Toggle Bookmark / Remove
         function toggleBookmark(item, btnElement) {
             let savedList = JSON.parse(localStorage.getItem('tb_saved_news')) || [];
             const existingIndex = savedList.findIndex(savedItem => savedItem.title === item.title);
@@ -449,7 +458,6 @@
             }
             localStorage.setItem('tb_saved_news', JSON.stringify(savedList));
             
-            // Auto refresh if on saved page
             if(document.getElementById('savedNewsView').style.display === 'block'){
                 showSavedNewsPage();
             }
@@ -476,7 +484,7 @@
             });
         }
 
-        // 🚀 Share Link Logic
+        // Share functionality
         function shareNews(title, link) {
             if (navigator.share) {
                 navigator.share({ title: 'TrustedBasket', text: title, url: link });
@@ -520,7 +528,7 @@
             chatBody.scrollTop = chatBody.scrollHeight;
         }
 
-        // 🚀 Language Toggle Script
+        // 🚀 Language Toggle Feature
         function toggleLang(lang) {
             const backBtn1 = document.getElementById('backBtnNews');
             const backBtn2 = document.getElementById('backBtnSaved');
