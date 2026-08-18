@@ -6,108 +6,46 @@
     <title>TrustedBasket | Free* AI Alert Platform</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     
-    <!-- Google Analytics -->
+    <!-- Analytics & Notifications -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-M8NL11TPWH"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-M8NL11TPWH');
-    </script>
-
-    <!-- OneSignal Notifications -->
+    <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-M8NL11TPWH');</script>
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-    <script>
-      window.OneSignalDeferred = window.OneSignalDeferred || [];
-      OneSignalDeferred.push(function(OneSignal) {
-        OneSignal.init({ appId: "2e1e6b6f-0d7d-45ca-a784-b4e6c9ab13c1" });
-      });
-    </script>
-    
+    <script>window.OneSignalDeferred = window.OneSignalDeferred || []; OneSignalDeferred.push(function(OneSignal) { OneSignal.init({ appId: "2e1e6b6f-0d7d-45ca-a784-b4e6c9ab13c1" }); });</script>
+
     <style>
         html, body { margin: 0; padding: 0; width: 100%; overflow-x: hidden; }
         * { box-sizing: border-box; }
         :root { --dark-pink: #9d174d; --primary: #db2777; --primary-hover: #be185d; --accent: #fbcfe8; --green: #10b981; --telegram: #0088cc; --bg-light: #fdf2f8; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-light); color: #334155; line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-light); color: #334155; }
         
-        nav { background-color: var(--dark-pink); color: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 10px rgba(157, 23, 77, 0.2); width: 100%; }
-        .nav-left-section { display: flex; align-items: center; gap: 15px; }
-        .menu-container { position: relative; }
-        .hamburger-btn { background: none; border: none; color: white; font-size: 26px; font-weight: 800; cursor: pointer; padding: 0 5px; }
-        .dropdown-menu { display: none; flex-direction: column; position: absolute; top: 35px; left: 0; background: white; min-width: 220px; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); border: 1px solid #fce7f3; z-index: 1000; }
-        .dropdown-menu a { text-decoration: none; color: var(--dark-pink); padding: 12px 15px; font-size: 14px; font-weight: 600; border-bottom: 1px solid #fdf2f8; cursor: pointer; display: flex; align-items: center; gap: 10px; }
-        .dropdown-menu a:hover { background: var(--bg-light); color: var(--primary); }
-        .logo-box { display: flex; flex-direction: column; }
-        .made-in-india-top { color: black; font-size: 13px; font-weight: 800; text-transform: uppercase; margin-bottom: -2px; }
-        .logo { font-size: 26px; font-weight: 800; text-decoration: none; color: white; line-height: 1.2; }
-        .logo span { color: var(--accent); }
-        .sub-logo-info { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+        nav { background-color: var(--dark-pink); color: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+        .hamburger-btn { background: none; border: none; color: white; font-size: 26px; font-weight: 800; cursor: pointer; }
+        .dropdown-menu { display: none; flex-direction: column; position: absolute; top: 55px; left: 0; background: white; min-width: 220px; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); z-index: 1000; }
+        .dropdown-menu a { padding: 12px 15px; font-weight: 600; color: var(--dark-pink); cursor: pointer; border-bottom: 1px solid #fdf2f8; display: block; }
         
         .hero { background: white; padding: 50px 5%; text-align: center; border-bottom: 2px solid #fce7f3; }
-        .hero h1 { font-size: 34px; color: var(--dark-pink); margin-bottom: 15px; }
-        .hero p { font-size: 16px; color: #475569; max-width: 900px; margin: 0 auto; }
-        .exclusive-features { background: #fff1f2; border: 1px dashed var(--primary); max-width: 900px; margin: 30px auto 0; padding: 20px; border-radius: 10px; text-align: left; }
-        .exclusive-features h4 { margin: 0 0 15px 0; color: var(--dark-pink); font-size: 14px; text-transform: uppercase; }
-        .feature-list { display: flex; gap: 20px; flex-wrap: wrap; font-size: 14px; font-weight: 600; color: var(--dark-pink); }
-        
-        .age-calc-section { background: white; padding: 25px 5%; text-align: center; border-bottom: 2px solid #fce7f3; }
-        .age-calc-box { background: #fff1f2; border: 1px solid #fbcfe8; max-width: 800px; margin: 0 auto; padding: 20px; border-radius: 12px; display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; align-items: flex-end; }
-        .input-group { text-align: left; }
-        .input-group label { font-size: 13px; font-weight: 700; color: var(--dark-pink); }
-        .input-group input { padding: 10px; border: 1px solid #fbcfe8; border-radius: 6px; outline: none; margin-top: 5px; width: 150px; }
-        .btn-calc { background: var(--primary); color: white; border: none; padding: 11px 25px; border-radius: 6px; font-weight: 700; cursor: pointer; }
-        #ageResult { font-size: 16px; font-weight: 700; color: var(--dark-pink); margin-top: 15px; }
-
+        .exclusive-features { background: #fff1f2; padding: 20px; border-radius: 10px; margin: 30px auto; max-width: 900px; text-align: left; }
+        .age-calc-section { background: white; padding: 30px 5%; text-align: center; border-bottom: 2px solid #fce7f3; }
         .filters { padding: 40px 5%; text-align: center; }
-        .filters h3 { margin-bottom: 10px; color: var(--dark-pink); font-size: 24px; }
-        .filters p { color: #475569; font-size: 15px; margin-bottom: 25px; }
-        .chips { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; max-width: 1100px; margin: 0 auto; }
-        .chip { padding: 14px 20px; background: white; border: 1.5px solid #fbcfe8; border-radius: 10px; cursor: pointer; font-weight: 600; color: #475569; transition: 0.2s; font-size: 14.5px; width: 320px; text-align: center; display: flex; flex-direction: column; align-items: center; }
-        .chip:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-2px); }
-
-        .page-view { display: none; padding: 30px 5%; max-width: 1200px; margin: 0 auto; width: 100%; }
-        #homeView { display: block; padding: 0; max-width: 100%; }
-        .feed-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 2px solid #fce7f3; padding-bottom: 15px; }
-        .back-btn { background: var(--dark-pink); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        .chips { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 20px; }
+        .chip { padding: 14px 20px; background: white; border: 1.5px solid #fbcfe8; border-radius: 10px; cursor: pointer; width: 320px; }
         
-        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-bottom: 40px; }
-        .news-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; border: 1px solid #fce7f3; }
-        .category-badge { font-size: 12px; font-weight: bold; color: white; background: var(--primary); padding: 4px 10px; border-radius: 20px; align-self: flex-start; margin-bottom: 10px; }
-        .news-title { font-size: 16px; font-weight: bold; margin-bottom: 10px; color: var(--dark-pink); line-height: 1.4; }
-        .news-date { font-size: 12px; color: #80868b; margin-bottom: 15px; font-weight: 600; }
-        .news-summary { font-size: 14px; color: #475569; margin-bottom: 15px; flex-grow: 1; line-height: 1.6; }
+        .page-view { display: none; padding: 30px 5%; }
+        .news-card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .card-actions { display: flex; gap: 10px; margin-top: 15px; }
+        .btn-action { background: var(--primary); color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; }
         
-        .card-actions { display: flex; justify-content: space-between; border-top: 1px solid #fce7f3; padding-top: 15px; margin-top: auto; }
-        .action-btn { background: none; border: none; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 5px; transition: 0.2s; text-decoration: none; }
-        .btn-read { color: var(--primary); }
-        .btn-save { color: #f59e0b; }
-        .btn-share { color: #0088cc; }
-
-        .banner-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; padding: 40px 5%; max-width: 1200px; margin: 0 auto; width: 100%; }
-        .donation-banner { background: linear-gradient(135deg, var(--primary), var(--primary-hover)); color: white; padding: 30px; border-radius: 14px; }
-        .btn-donate { background: white; color: var(--primary); text-decoration: none; padding: 12px 24px; border-radius: 8px; font-weight: 700; display: inline-block; margin-top: 15px; }
-        .wa-banner { background: var(--dark-pink); color: white; padding: 30px; border-radius: 14px; }
-        .btn-wa { background: var(--green); color: white; text-decoration: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; display: inline-block; margin-top: 15px; }
-        .telegram-banner { background: var(--telegram); color: white; padding: 30px; border-radius: 14px; }
-        .btn-telegram { background: white; color: var(--telegram); text-decoration: none; padding: 12px 24px; border-radius: 8px; font-weight: 700; display: inline-block; margin-top: 15px; }
-
-        footer { background: white; padding: 25px 5%; text-align: center; border-top: 2px solid #fce7f3; font-size: 14px; color: #64748b; margin-top: auto; }
-        .footer-links { margin-top: 10px; }
-        .footer-links a { color: var(--primary); font-weight: 700; cursor: pointer; text-decoration: none; margin: 0 10px; }
-
-        .ai-help-btn { position: fixed; bottom: 30px; right: 30px; background: var(--dark-pink); color: white; padding: 15px 25px; border-radius: 50px; font-weight: 700; box-shadow: 0 10px 25px rgba(157, 23, 77, 0.4); cursor: pointer; border: 2px solid var(--accent); z-index: 1000; }
-        .chat-modal { position: fixed; bottom: 95px; right: 30px; width: 330px; background: white; border-radius: 14px; box-shadow: 0 15px 35px rgba(0,0,0,0.25); z-index: 1001; display: none; flex-direction: column; border: 1px solid #fce7f3; overflow: hidden; }
-        .chat-header { background: var(--dark-pink); color: white; padding: 12px 15px; display: flex; justify-content: space-between; font-weight: 700; }
-        .chat-header button { background: none; border: none; color: white; font-size: 18px; cursor: pointer; }
-        .chat-body { height: 280px; padding: 15px; background: #fdf2f8; overflow-y: auto; font-size: 13.5px; }
-        .bot-msg { background: white; padding: 10px 12px; border-radius: 12px 12px 12px 0; color: #334155; margin-bottom: 10px; width: 88%; border: 1px solid #fbcfe8; }
-        .user-msg { background: var(--primary); color: white; padding: 10px 12px; border-radius: 12px 12px 0 12px; margin-left: auto; margin-bottom: 10px; width: 85%; text-align: right; }
-        .chat-footer { padding: 10px 15px; background: white; display: flex; gap: 8px; border-top: 1px solid #fce7f3; }
-        .chat-footer input { flex: 1; padding: 8px 12px; border: 1px solid #fbcfe8; border-radius: 6px; outline: none; }
-        .chat-footer button { background: var(--primary); color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: 600; }
+        .banner-container { padding: 40px 5%; display: grid; gap: 20px; }
+        .banner { padding: 30px; border-radius: 14px; color: white; }
         
-        .tc-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 600px; background: white; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); z-index: 2000; display: none; padding: 25px; max-height: 80vh; overflow-y: auto; }
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1999; display: none; }
+        .ai-help-btn { position: fixed; bottom: 30px; right: 30px; background: var(--dark-pink); color: white; padding: 15px 25px; border-radius: 50px; cursor: pointer; z-index: 1000; }
+        .chat-modal { position: fixed; bottom: 95px; right: 30px; width: 330px; background: white; display: none; flex-direction: column; z-index: 1001; }
+        
+        .tc-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 600px; background: white; padding: 25px; display: none; z-index: 2000; max-height: 80vh; overflow-y: auto; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 1999; }
+        
+        /* Fix Translator Bug */
+        .goog-te-balloon-frame { display: none !important; }
     </style>
 </head>
 <body>
@@ -124,99 +62,99 @@
                     <a onclick="showPrivacy()">🔒 Privacy Policy</a>
                 </div>
             </div>
-            <div class="logo-box">
-                <span class="made-in-india-top">Made in India 🇮🇳</span>
-                <a href="#" class="logo" onclick="showHome()">Trusted<span>Basket</span></a>
-            </div>
+            <a href="#" class="logo" onclick="showHome()">Trusted<span>Basket</span></a>
         </div>
         <div class="nav-right-items">
+            <select class="lang-selector" onchange="toggleLang(this.value)"><option value="hi">हिंदी</option><option value="en">English</option></select>
             <div id="google_translate_element"></div>
         </div>
     </nav>
 
     <div id="homeView">
         <section class="hero">
-            <h1>इंटरनेट के अनावश्यक शोर से बचें और केवल प्रामाणिक जानकारी पाएं</h1>
-            <p>TrustedBasket एक फ्री* सॉफ्टवेयर है। अपनी रुचियों का चयन करें और हमारा एडवांस्ड AI आपको हर महत्वपूर्ण अपडेट की सटीक* व्याख्या (Analysis) प्रदान करेगा।</p>
+            <h1 id="heroH1">इंटरनेट के अनावश्यक शोर से बचें और केवल प्रामाणिक जानकारी पाएं</h1>
+            <p id="heroP">TrustedBasket एक फ्री* सॉफ्टवेयर है। अपनी रुचियों का चयन करें और हमारा एडवांस्ड AI आपको हर महत्वपूर्ण अपडेट की सटीक* व्याख्या (Analysis) प्रदान करेगा।</p>
+            <div class="exclusive-features">
+                <h4>⭐ Only TrustedBasket Free* Features:</h4>
+                <div class="feature-list">
+                    <span>🤖 AI Smart Summary</span>
+                    <span>⏰ Auto-Reminders</span>
+                    <span>💬 AI Assistant</span>
+                    <span>✅ Verified* Sources</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="age-calc-section">
+            <h3>⏳ Age Calculator (उम्र निकालें)</h3>
+            <input type="date" id="dobInput"><input type="date" id="asOnDate"><button onclick="calculateAge()">Calculate Age</button>
+            <div id="ageResult"></div>
         </section>
 
         <section class="filters">
-            <h3>अपनी रुचियों का चयन करें</h3>
+            <h3 id="selectInterestH3">अपनी रुचियों का चयन करें</h3>
+            <p id="selectInterestP">किसी भी श्रेणी पर क्लिक करके उसकी ताज़ा खबरें देखें:</p>
             <div class="chips">
                 <div class="chip" onclick="openCategoryPage('PIB')"><b>🏛️ PIB</b></div>
                 <div class="chip" onclick="openCategoryPage('Govt Job Alert')"><b>🎓 Government Job Alert</b></div>
                 <div class="chip" onclick="openCategoryPage('PSU Jobs')"><b>🏢 PSU Jobs</b></div>
                 <div class="chip" onclick="openCategoryPage('Banking & Finance')"><b>🏦 Banking & Finance</b></div>
                 <div class="chip" onclick="openCategoryPage('MSME')"><b>🏭 MSME</b></div>
-                <div class="chip" onclick="openCategoryPage('WHO')"><b>🩺 WHO</b></div>
+                <div class="chip" onclick="openCategoryPage('WHO')"><span class="notranslate"><b>🩺 WHO</b></span></div>
             </div>
         </section>
     </div>
 
     <div id="newsFeedView" class="page-view">
-        <div class="feed-header">
-            <h2 id="feedCategoryTitle" style="color: var(--dark-pink); margin: 0;">Category Feed</h2>
-            <button class="back-btn" onclick="showHome()">← Back</button>
-        </div>
-        <div class="news-grid" id="categoryNewsGrid"></div>
+        <div class="feed-header"><h2 id="feedCategoryTitle"></h2><button class="back-btn" onclick="showHome()">← Back</button></div>
+        <div id="loadingText">ताज़ा ख़बरें लोड हो रही हैं...</div>
+        <div id="categoryNewsGrid"></div>
     </div>
 
     <div id="savedNewsView" class="page-view">
-        <div class="feed-header">
-            <h2 style="color: var(--dark-pink); margin: 0;">🔖 Saved News</h2>
-            <button class="back-btn" onclick="showHome()">← Back</button>
-        </div>
-        <div class="news-grid" id="savedNewsGrid"></div>
+        <div class="feed-header"><h2>🔖 Saved News</h2><button class="back-btn" onclick="showHome()">← Back</button></div>
+        <div id="savedNewsGrid"></div>
     </div>
 
     <div class="banner-container">
-        <section class="donation-banner">
+        <section class="banner" style="background: linear-gradient(135deg, var(--primary), var(--primary-hover));">
             <h3>💖 Support* & Social Welfare</h3>
-            <p style="font-size: 14px;">आपके द्वारा दिया गया सहयोग सीधे तौर पर ज़रूरतमंद छात्रों की शिक्षा और समाज की भलाई पर खर्च किया जाएगा। पारदर्शिता के लिए खर्च का विवरण सार्वजनिक किया जाएगा*। (यह सहयोग पूरी तरह स्वैच्छिक* है)।</p>
-            <a href="APNA_PAYMENT_LINK_DAALEIN" target="_blank" class="btn-donate">💖 Support Us</a>
+            <p>सहयोग सीधे तौर पर जरूरतमंद छात्रों की शिक्षा और समाज की भलाई पर खर्च किया जाएगा। पारदर्शिता के लिए खर्च का विवरण सार्वजनिक किया जाएगा*। (यह सहयोग पूरी तरह स्वैच्छिक* है)।</p>
+            <a href="APNA_PAYMENT_LINK_YAHAN_DAALEIN" target="_blank" class="btn-action">💖 Support Us</a>
         </section>
-        <section class="wa-banner">
+        <section class="banner" style="background: var(--dark-pink);">
             <h3>⭐ WhatsApp Alerts (वैकल्पिक)</h3>
-            <p style="font-size: 14px;">तुरंत और केवल अपनी पसंदीदा रुचियों की ताज़ा न्यूज़ WhatsApp पर पाएं। <b>मासिक चार्ज ₹49*</b> केवल Meta API सर्वर चार्ज हेतु है।</p>
-            <a href="APNA_WHATSAPP_LINK_DAALEIN" target="_blank" class="btn-wa">🟢 Subscribe for VIP Alerts</a>
+            <p>मासिक चार्ज ₹49* - Meta API सर्वर चार्ज हेतु।</p>
+            <a href="APNA_WHATSAPP_LINK_YAHAN_DAALEIN" target="_blank" class="btn-action" style="background:var(--green)">🟢 Subscribe</a>
         </section>
-        <section class="telegram-banner">
+        <section class="banner" style="background: var(--telegram);">
             <h3>⭐ Telegram Bot (फ्री)</h3>
-            <p style="font-size: 14px;">हमारी फ्री कम्युनिटी से जुड़कर सीधे अपने फोन पर फास्ट अलर्ट्स और डेली राउंडअप प्राप्त करें।</p>
-            <a href="https://t.me/Trustedbasket_bot" target="_blank" class="btn-telegram">✈️ Join Free Group</a>
+            <a href="https://t.me/Trustedbasket_bot" target="_blank" class="btn-action" style="background:white; color:var(--telegram)">✈️ Join Free Group</a>
         </section>
     </div>
 
-    <footer>
-        <p><b>Copyright © 2026 TrustedBasket. All rights reserved.</b></p>
-        <div class="footer-links">
-            <a onclick="showTC()">Terms & Conditions</a> | <a onclick="showPrivacy()">Privacy Policy</a>
-        </div>
-    </footer>
-
-    <button class="ai-help-btn" onclick="toggleChat()">🤖 AI Assistant</button>
+    <button class="ai-help-btn" onclick="toggleChat()">🤖 AI HELP Box (कुछ भी पूछें)</button>
     <div id="aiChatModal" class="chat-modal">
         <div class="chat-header"><span>🤖 TrustedBasket AI Assistant</span><button onclick="toggleChat()">✖</button></div>
-        <div class="chat-body" id="chatBody"><p class="bot-msg">नमस्ते! AI असिस्टेंट हूँ। आप मुझसे किसी भी सरकारी योजना, एग्जाम या न्यूज़ के बारे में पूछ सकते हैं।</p></div>
-        <div class="chat-footer"><input type="text" id="chatInput" placeholder="पूछें..." onkeypress="if(event.key === 'Enter') sendChatMessage()"><button onclick="sendChatMessage()">Send</button></div>
+        <div class="chat-body" id="chatBody"></div>
+        <div class="chat-footer"><input type="text" id="chatInput" placeholder="पूछें..."><button onclick="sendChatMessage()">Send</button></div>
     </div>
 
-    <!-- Modals -->
     <div class="modal-overlay" id="tcOverlay" onclick="closeModals()"></div>
     <div class="tc-modal" id="aboutModal">
-        <h3 style="color: var(--dark-pink);">ℹ️ About TrustedBasket</h3>
-        <p style="font-size: 13.5px;"><b>Vision:</b> इंटरनेट पर मौजूद भ्रामक जानकारी (Noise) के बीच से सबसे प्रामाणिक जानकारी लाना। <br><b>Trust:</b> केवल सरकारी स्रोत (PIB, RBI, WHO) का उपयोग।</p>
-        <button onclick="closeModals()" style="background: var(--dark-pink); color: white; padding: 8px 20px; border-radius: 6px; border:none; cursor: pointer; float: right;">Close</button>
+        <h3>ℹ️ About TrustedBasket</h3>
+        <p><b>हमारा विज़न:</b> इंटरनेट पर मौजूद भ्रामक जानकारी (Noise) के बीच से सबसे प्रामाणिक जानकारी लाना। <br><b>विश्वास:</b> PIB, RBI, WHO जैसे आधिकारिक स्रोतों से डेटा।</p>
+        <button onclick="closeModals()">Close</button>
     </div>
     <div class="tc-modal" id="tcModal">
-        <h3 style="color: var(--dark-pink);">📜 Terms & Conditions</h3>
-        <p style="font-size: 13.5px;"><b>1. Free Platform (*):</b> निशुल्क सेवा। <br><b>2. AI Accuracy (*):</b> AI आधारित सारांश। <br><b>3. Messaging (*):</b> ₹49 मासिक WhatsApp शुल्क (सर्वर चार्ज)। <br><b>4. Support (*):</b> स्वैच्छिक योगदान, पारदर्शिता हेतु रिपोर्ट सार्वजनिक की जाएगी। <br><b>5. Verified Sources:</b> केवल सरकारी डेटा।</p>
-        <button onclick="closeModals()" style="background: var(--dark-pink); color: white; padding: 8px 20px; border-radius: 6px; border:none; cursor: pointer; float: right;">Close</button>
+        <h3>📜 Terms & Conditions</h3>
+        <p>1. Free Platform (*): निशुल्क सेवा। <br>2. AI Accuracy (*): AI आधारित सारांश। <br>3. Messaging (*): ₹49 मासिक WhatsApp शुल्क (सर्वर चार्ज)। <br>4. Support (*): स्वैच्छिक योगदान, पारदर्शिता हेतु रिपोर्ट सार्वजनिक की जाएगी। <br>5. Verified Sources: केवल सरकारी डेटा।</p>
+        <button onclick="closeModals()">Close</button>
     </div>
     <div class="tc-modal" id="privacyModal">
-        <h3 style="color: var(--dark-pink);">🔒 Privacy Policy</h3>
-        <p style="font-size: 13.5px;"><b>1. Data:</b> कोई व्यक्तिगत डेटा नहीं। <br><b>2. Services:</b> Analytics & Notifications का उपयोग।</p>
-        <button onclick="closeModals()" style="background: var(--dark-pink); color: white; padding: 8px 20px; border-radius: 6px; border:none; cursor: pointer; float: right;">Close</button>
+        <h3>🔒 Privacy Policy</h3>
+        <p>1. Data: व्यक्तिगत डेटा सुरक्षित। <br>2. Services: Google Analytics, OneSignal, AI का उपयोग।</p>
+        <button onclick="closeModals()">Close</button>
     </div>
 
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
@@ -226,45 +164,42 @@
         let allNewsData = [];
 
         function toggleNavMenu() { const m = document.getElementById('navDropdown'); m.style.display = (m.style.display === 'flex') ? 'none' : 'flex'; }
+        function closeModals() { document.getElementById('tcOverlay').style.display = 'none'; document.getElementById('tcModal').style.display = 'none'; document.getElementById('aboutModal').style.display = 'none'; document.getElementById('privacyModal').style.display = 'none'; document.getElementById('navDropdown').style.display = 'none'; }
         function showTC() { closeModals(); document.getElementById('tcOverlay').style.display = 'block'; document.getElementById('tcModal').style.display = 'block'; }
         function showAbout() { closeModals(); document.getElementById('tcOverlay').style.display = 'block'; document.getElementById('aboutModal').style.display = 'block'; }
         function showPrivacy() { closeModals(); document.getElementById('tcOverlay').style.display = 'block'; document.getElementById('privacyModal').style.display = 'block'; }
-        function closeModals() { document.getElementById('tcOverlay').style.display = 'none'; document.getElementById('tcModal').style.display = 'none'; document.getElementById('aboutModal').style.display = 'none'; document.getElementById('privacyModal').style.display = 'none'; document.getElementById('navDropdown').style.display = 'none'; }
-        function showHome() { document.getElementById('homeView').style.display = 'block'; document.getElementById('newsFeedView').style.display = 'none'; document.getElementById('savedNewsView').style.display = 'none'; window.scrollTo(0, 0); }
+        function showHome() { document.getElementById('homeView').style.display = 'block'; document.getElementById('newsFeedView').style.display = 'none'; document.getElementById('savedNewsView').style.display = 'none'; window.scrollTo(0,0); }
 
-        async function openCategoryPage(categoryName) {
-            document.getElementById('homeView').style.display = 'none';
-            document.getElementById('savedNewsView').style.display = 'none';
-            document.getElementById('newsFeedView').style.display = 'block';
-            document.getElementById('feedCategoryTitle').innerText = categoryName + " Updates";
-            
+        async function openCategoryPage(cat) {
+            document.getElementById('homeView').style.display = 'none'; document.getElementById('newsFeedView').style.display = 'block'; document.getElementById('feedCategoryTitle').innerText = cat + " Updates";
             if (allNewsData.length === 0) { try { const r = await fetch(API_URL); allNewsData = await r.json(); } catch(e) {} }
             const grid = document.getElementById('categoryNewsGrid'); grid.innerHTML = "";
-            const filtered = allNewsData.filter(item => item.category === categoryName);
-            filtered.forEach(item => grid.appendChild(createNewsCard(item)));
+            allNewsData.filter(i => i.category === cat).forEach(item => grid.appendChild(createNewsCard(item, false)));
+            document.getElementById('navDropdown').style.display = 'none';
         }
 
-        function createNewsCard(item) {
+        function createNewsCard(item, isSavedPage) {
             const card = document.createElement("div"); card.className = "news-card";
-            let savedList = JSON.parse(localStorage.getItem('tb_saved_news')) || [];
-            let isSaved = savedList.some(s => s.title === item.title);
-            card.innerHTML = `<div class="category-badge">${item.category}</div><div class="news-title">${item.title}</div><div class="news-date">📅 ${item.date}</div><div class="news-summary">${item.summary}</div><div class="card-actions"><button class="action-btn btn-save" onclick='toggleBookmark(${JSON.stringify(item)}, this)'>${isSaved ? '🔖 Saved' : '🔖 Save'}</button><button class="action-btn btn-share" onclick="shareNews('${item.title.replace(/'/g, "\\'")}', '${item.link}')">🔗 Share</button><a href="${item.link}" target="_blank" class="action-btn btn-read">मूूल ख़बर ➔</a></div>`;
+            let saved = JSON.parse(localStorage.getItem('saved')) || [];
+            let isS = saved.some(s => s.title === item.title);
+            card.innerHTML = `<h4>${item.title}</h4><p>${item.summary}</p><div class='card-actions'><button class='btn-action' onclick='saveNews(${JSON.stringify(item)})'>${isS?'🔖 Saved':'🔖 Save'}</button><button class='btn-action' onclick="shareNews('${item.title}', '${item.link}')">🔗 Share</button><a href='${item.link}' target='_blank' class='btn-action'>मूूल ख़बर ➔</a></div>`;
             return card;
         }
 
-        function toggleBookmark(item, btn) {
-            let list = JSON.parse(localStorage.getItem('tb_saved_news')) || [];
-            const idx = list.findIndex(s => s.title === item.title);
-            if(idx > -1) { list.splice(idx, 1); btn.innerText = "🔖 Save"; } else { list.push(item); btn.innerText = "🔖 Saved"; }
-            localStorage.setItem('tb_saved_news', JSON.stringify(list));
+        function saveNews(item) {
+            let saved = JSON.parse(localStorage.getItem('saved')) || [];
+            const idx = saved.findIndex(s => s.title === item.title);
+            if(idx > -1) saved.splice(idx, 1); else saved.push(item);
+            localStorage.setItem('saved', JSON.stringify(saved));
+            alert("Bookmark updated!");
         }
 
         function showSavedNewsPage() {
-            document.getElementById('homeView').style.display = 'none'; document.getElementById('newsFeedView').style.display = 'none'; document.getElementById('savedNewsView').style.display = 'block';
+            document.getElementById('homeView').style.display = 'none'; document.getElementById('newsFeedView').style.display = 'none'; document.getElementById('savedNewsView').style.display = 'block'; document.getElementById('navDropdown').style.display = 'none';
             const grid = document.getElementById('savedNewsGrid'); grid.innerHTML = "";
-            let list = JSON.parse(localStorage.getItem('tb_saved_news')) || [];
+            let list = JSON.parse(localStorage.getItem('saved')) || [];
             if(list.length === 0) { grid.innerHTML = "<p style='text-align:center;'>कोई बुकमार्क नहीं है।</p>"; return; }
-            list.forEach(item => grid.appendChild(createNewsCard(item)));
+            list.forEach(item => grid.appendChild(createNewsCard(item, true)));
         }
 
         function shareNews(t, l) { if (navigator.share) navigator.share({title: t, url: l}); else { navigator.clipboard.writeText(l); alert("Link copied!"); } }
@@ -276,6 +211,20 @@
             const res = await fetch(API_URL + "?chat=" + encodeURIComponent(userText)); const data = await res.json();
             chatBody.innerHTML += `<p class="bot-msg">${data.candidates[0].content.parts[0].text.replace(/\*\*/g, '').replace(/\n/g, '<br>')}</p>`;
             input.value = ""; chatBody.scrollTop = chatBody.scrollHeight;
+        }
+        
+        function toggleLang(lang) {
+            if(lang === 'en') {
+                document.getElementById('heroH1').innerText = "Avoid Internet Noise and Get Only Authentic Information";
+                document.getElementById('heroP').innerText = "TrustedBasket is a free* software. Select your interests and our advanced AI provides accurate* analysis.";
+                document.getElementById('selectInterestH3').innerText = "Select your interests";
+                document.getElementById('selectInterestP').innerText = "Click on any category to view the latest news:";
+            } else {
+                document.getElementById('heroH1').innerText = "इंटरनेट के अनावश्यक शोर से बचें और केवल प्रामाणिक जानकारी पाएं";
+                document.getElementById('heroP').innerText = "TrustedBasket एक फ्री* सॉफ्टवेयर है। अपनी रुचियों का चयन करें और हमारा एडवांस्ड AI आपको हर महत्वपूर्ण अपडेट की सटीक* व्याख्या (Analysis) प्रदान करेगा।";
+                document.getElementById('selectInterestH3').innerText = "अपनी रुचियों का चयन करें";
+                document.getElementById('selectInterestP').innerText = "किसी भी श्रेणी पर क्लिक करके उसकी ताज़ा खबरें देखें:";
+            }
         }
     </script>
 </body>
