@@ -8,18 +8,9 @@
     
     <style>
         /* ================= फिक्स: वाइट गैप हटाने के लिए ================= */
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            overflow-x: hidden;
-        }
+        html, body { margin: 0; padding: 0; width: 100%; overflow-x: hidden; }
+        * { box-sizing: border-box; }
         
-        * {
-            box-sizing: border-box;
-        }
-        /* ============================================================== */
-
         :root {
             --dark-pink: #9d174d; 
             --primary: #db2777; 
@@ -30,231 +21,80 @@
             --bg-light: #fdf2f8; 
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-light);
-            color: #334155;
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-light); color: #334155; line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
 
-        /* Navbar - Updated with Hamburger menu support */
-        nav {
-            background-color: var(--dark-pink);
-            color: white;
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 10px rgba(157, 23, 77, 0.2);
-            width: 100%;
-        }
-
-        .nav-left-section {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        /* Hamburger Menu CSS (3 Horizontal Lines) */
-        .menu-container {
-            position: relative;
-        }
-        .hamburger-btn {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 26px;
-            font-weight: 800;
-            cursor: pointer;
-            padding: 0 5px;
-            line-height: 1;
-        }
-        .dropdown-menu {
-            display: none;
-            flex-direction: column;
-            position: absolute;
-            top: 35px;
-            left: 0;
-            background: white;
-            min-width: 180px;
-            border-radius: 8px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            overflow: hidden;
-            border: 1px solid #fce7f3;
-            z-index: 1000;
-        }
-        .dropdown-menu a {
-            text-decoration: none;
-            color: var(--dark-pink);
-            padding: 12px 15px;
-            font-size: 14px;
-            font-weight: 600;
-            border-bottom: 1px solid #fdf2f8;
-            transition: 0.2s;
-        }
-        .dropdown-menu a:hover {
-            background: var(--bg-light);
-            color: var(--primary);
-        }
+        /* Navbar */
+        nav { background-color: var(--dark-pink); color: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 10px rgba(157, 23, 77, 0.2); width: 100%; }
+        .nav-left-section { display: flex; align-items: center; gap: 15px; }
+        .menu-container { position: relative; }
+        .hamburger-btn { background: none; border: none; color: white; font-size: 26px; font-weight: 800; cursor: pointer; padding: 0 5px; line-height: 1; }
+        .dropdown-menu { display: none; flex-direction: column; position: absolute; top: 35px; left: 0; background: white; min-width: 180px; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); overflow: hidden; border: 1px solid #fce7f3; z-index: 1000; }
+        .dropdown-menu a { text-decoration: none; color: var(--dark-pink); padding: 12px 15px; font-size: 14px; font-weight: 600; border-bottom: 1px solid #fdf2f8; transition: 0.2s; }
+        .dropdown-menu a:hover { background: var(--bg-light); color: var(--primary); }
 
         .logo-box { display: flex; flex-direction: column; }
-        
-        .made-in-india-top {
-            color: black;
-            font-size: 13px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: -2px;
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.3); 
-        }
-        
+        .made-in-india-top { color: black; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: -2px; text-shadow: 1px 1px 2px rgba(255,255,255,0.3); }
         .logo { font-size: 26px; font-weight: 800; text-decoration: none; color: white; letter-spacing: -0.5px; line-height: 1.2; }
         .logo span { color: var(--accent); }
-        
         .sub-logo-info { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
         .tagline { font-size: 12px; font-weight: 600; color: #fbcfe8; letter-spacing: 0.5px; }
-
-        .nav-right-items {
-            display: flex;
-            align-items: center;
-            margin-left: auto;
-        }
-
-        /* Cleaned up Language Selector */
-        .lang-selector {
-            background: white;
-            color: var(--dark-pink);
-            border: 2px solid var(--accent);
-            padding: 8px 15px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            outline: none;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
+        .nav-right-items { display: flex; align-items: center; margin-left: auto; }
+        .lang-selector { background: white; color: var(--dark-pink); border: 2px solid var(--accent); padding: 8px 15px; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; outline: none; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
 
         /* Hero Section */
-        .hero {
-            background: white;
-            padding: 60px 5%;
-            text-align: center;
-            border-bottom: 2px solid #fce7f3;
-        }
+        .hero { background: white; padding: 60px 5%; text-align: center; border-bottom: 2px solid #fce7f3; }
         .hero h1 { font-size: 36px; color: var(--dark-pink); margin-bottom: 15px; letter-spacing: -0.5px; }
         .hero p { font-size: 17px; color: #475569; max-width: 900px; margin: 0 auto; line-height: 1.8; }
-        
-        .exclusive-features {
-            background: #fff1f2;
-            border: 1px dashed var(--primary);
-            max-width: 900px;
-            margin: 40px auto 0;
-            padding: 22px;
-            border-radius: 10px;
-            text-align: left;
-        }
+        .exclusive-features { background: #fff1f2; border: 1px dashed var(--primary); max-width: 900px; margin: 40px auto 0; padding: 22px; border-radius: 10px; text-align: left; }
         .exclusive-features h4 { margin: 0 0 15px 0; color: var(--dark-pink); font-size: 15px; text-transform: uppercase; letter-spacing: 1px; }
         .feature-list { display: flex; gap: 25px; flex-wrap: wrap; font-size: 15px; font-weight: 600; color: var(--dark-pink); }
         .feature-list span { display: flex; align-items: center; gap: 8px; }
 
         /* Age Calculator */
-        .age-calc-section {
-            background: white;
-            padding: 25px 5%;
-            text-align: center;
-            border-bottom: 2px solid #fce7f3;
-        }
-        .age-calc-box {
-            background: #fff1f2;
-            border: 1px solid #fbcfe8;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            border-radius: 12px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-            align-items: flex-end;
-        }
+        .age-calc-section { background: white; padding: 25px 5%; text-align: center; border-bottom: 2px solid #fce7f3; }
+        .age-calc-box { background: #fff1f2; border: 1px solid #fbcfe8; max-width: 800px; margin: 0 auto; padding: 20px; border-radius: 12px; display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; align-items: flex-end; }
         .input-group { text-align: left; }
         .input-group label { font-size: 13px; font-weight: 700; color: var(--dark-pink); }
-        .input-group input { 
-            padding: 10px; border: 1px solid #fbcfe8; border-radius: 6px; 
-            outline: none; font-family: inherit; margin-top: 5px; width: 150px;
-        }
-        .btn-calc {
-            background: var(--primary); color: white; border: none; padding: 11px 25px;
-            border-radius: 6px; font-weight: 700; font-family: inherit; cursor: pointer; transition: 0.2s;
-        }
+        .input-group input { padding: 10px; border: 1px solid #fbcfe8; border-radius: 6px; outline: none; font-family: inherit; margin-top: 5px; width: 150px; }
+        .btn-calc { background: var(--primary); color: white; border: none; padding: 11px 25px; border-radius: 6px; font-weight: 700; font-family: inherit; cursor: pointer; transition: 0.2s; }
         .btn-calc:hover { background: var(--dark-pink); }
         #ageResult { font-size: 16px; font-weight: 700; color: var(--dark-pink); margin-top: 15px; }
 
-        /* Filter Section */
-        .filters {
-            padding: 50px 5%;
-            text-align: center;
-        }
+        /* Filters / Chips */
+        .filters { padding: 50px 5%; text-align: center; }
         .filters h3 { margin-bottom: 10px; color: var(--dark-pink); font-size: 24px; }
         .filters p { color: #475569; font-size: 16px; margin-bottom: 30px; }
         .chips { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; max-width: 1000px; margin: 0 auto; }
-        .chip {
-            padding: 12px 25px;
-            background: white;
-            border: 1.5px solid #fbcfe8;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: 600;
-            color: #475569;
-            user-select: none;
-            transition: all 0.2s ease;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-            font-size: 15px;
-        }
+        .chip { padding: 12px 25px; background: white; border: 1.5px solid #fbcfe8; border-radius: 10px; cursor: pointer; font-weight: 600; color: #475569; user-select: none; transition: all 0.2s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.02); font-size: 15px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .chip:hover { border-color: var(--primary); color: var(--primary); }
         .chip.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 4px 8px rgba(219, 39, 119, 0.25); }
+        .chip span { font-size: 11.5px; font-weight: 600; margin-top: 4px; display: inline-block; text-align: center; }
+        .chip.active span { color: #fdf2f8 !important; }
 
-        /* News Grid (Cards Removed as requested, keeping empty container for future AI insertion) */
-        .news-grid {
-            padding: 0 5% 30px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-        }
+        /* News Cards Design */
+        .loading { text-align: center; font-size: 18px; color: var(--primary); font-weight: bold; margin-bottom: 20px; }
+        .news-grid { padding: 0 5% 30px; display: flex; flex-wrap: wrap; gap: 25px; justify-content: center; max-width: 1200px; margin: 0 auto; width: 100%; }
+        .news-card { background: white; border-radius: 12px; padding: 20px; width: 340px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; transition: 0.2s; border: 1px solid #fce7f3; }
+        .news-card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.1); border-color: var(--primary); }
+        .category-badge { font-size: 12px; font-weight: bold; color: white; background: var(--primary); padding: 5px 12px; border-radius: 20px; align-self: flex-start; margin-bottom: 12px; }
+        .news-title { font-size: 17px; font-weight: bold; margin-bottom: 10px; color: var(--dark-pink); line-height: 1.4; }
+        .news-date { font-size: 12px; color: #80868b; margin-bottom: 15px; font-weight: 600; }
+        .news-summary { font-size: 14.5px; color: #475569; margin-bottom: 20px; line-height: 1.6; flex-grow: 1; }
+        .read-more { text-decoration: none; color: var(--primary); font-weight: bold; text-align: center; border-top: 1px solid #fce7f3; padding-top: 15px; transition: 0.2s; }
+        .read-more:hover { color: var(--dark-pink); }
 
         /* Banners */
-        .banner-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            padding: 0 5% 60px;
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
+        .banner-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; padding: 0 5% 60px; max-width: 1200px; margin: 0 auto; width: 100%; }
         .telegram-banner { background: var(--telegram); color: white; padding: 40px; border-radius: 14px; text-align: left; box-shadow: 0 10px 25px rgba(0, 136, 204, 0.2); display: flex; flex-direction: column; }
         .telegram-banner h3 { margin: 0 0 15px; color: #e0f2fe; font-size: 24px; }
         .telegram-banner p { color: #bae6fd; font-size: 15px; margin: 0 0 20px; line-height: 1.8; }
         .btn-telegram { background: white; color: var(--telegram); text-decoration: none; padding: 14px 28px; border-radius: 8px; font-weight: 700; font-size: 15px; display: inline-block; transition: 0.2s; width: fit-content; margin-bottom: 10px; }
         .btn-telegram:hover { box-shadow: 0 4px 10px rgba(0,0,0,0.1); transform: translateY(-2px); }
-
         .wa-banner { background: var(--dark-pink); color: white; padding: 40px; border-radius: 14px; text-align: left; box-shadow: 0 10px 25px rgba(157, 23, 77, 0.2); display: flex; flex-direction: column; }
         .wa-banner h3 { margin: 0 0 15px; color: var(--green); font-size: 24px; }
         .wa-banner p { color: #fbcfe8; font-size: 15px; margin: 0 0 30px; line-height: 1.8; }
         .btn-wa { background: var(--green); color: white; text-decoration: none; padding: 14px 28px; border-radius: 8px; font-weight: 600; font-size: 15px; display: inline-block; transition: 0.2s; width: fit-content; }
         .btn-wa:hover { background: #059669; }
-
         .donation-banner { background: linear-gradient(135deg, var(--primary), var(--primary-hover)); color: white; padding: 40px; border-radius: 14px; text-align: left; box-shadow: 0 12px 25px -6px rgba(219, 39, 119, 0.3); display: flex; flex-direction: column; }
         .donation-banner h3 { margin: 0 0 15px; font-size: 24px; color: #fdf2f8; }
         .donation-banner p { color: #fbcfe8; font-size: 15px; margin: 0 0 30px; line-height: 1.8; }
@@ -264,39 +104,20 @@
         /* Footer */
         footer { background: white; padding: 30px 5%; text-align: center; border-top: 2px solid #fce7f3; font-size: 14px; color: #64748b; margin-top: auto; }
         footer p { margin: 8px 0; }
-        
-        .footer-terms-link {
-            color: var(--primary);
-            font-size: 15px;
-            font-weight: 700;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 15px;
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 2px;
-            transition: 0.2s;
-        }
+        .footer-terms-link { color: var(--primary); font-size: 15px; font-weight: 700; text-decoration: none; display: inline-block; margin-top: 15px; border-bottom: 2px solid var(--primary); padding-bottom: 2px; transition: 0.2s; }
         .footer-terms-link:hover { color: var(--dark-pink); border-color: var(--dark-pink); }
 
         /* Floating AI Box */
-        .ai-help-btn {
-            position: fixed; bottom: 35px; right: 35px; background: var(--dark-pink); color: white;
-            padding: 16px 28px; border-radius: 50px; font-weight: 600; box-shadow: 0 10px 25px rgba(157, 23, 77, 0.4);
-            cursor: pointer; display: flex; align-items: center; gap: 12px; border: 2px solid var(--accent);
-            font-family: inherit; font-size: 15px; transition: 0.2s; z-index: 1000;
-        }
+        .ai-help-btn { position: fixed; bottom: 35px; right: 35px; background: var(--dark-pink); color: white; padding: 16px 28px; border-radius: 50px; font-weight: 600; box-shadow: 0 10px 25px rgba(157, 23, 77, 0.4); cursor: pointer; display: flex; align-items: center; gap: 12px; border: 2px solid var(--accent); font-family: inherit; font-size: 15px; transition: 0.2s; z-index: 1000; }
         .ai-help-btn:hover { background: var(--primary); transform: scale(1.05); }
 
         /* Chat Modal */
-        .chat-modal {
-            position: fixed; bottom: 100px; right: 35px; width: 320px; background: white;
-            border-radius: 14px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); z-index: 1001;
-            display: none; flex-direction: column; border: 1px solid #fce7f3; overflow: hidden;
-        }
+        .chat-modal { position: fixed; bottom: 100px; right: 35px; width: 320px; background: white; border-radius: 14px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); z-index: 1001; display: none; flex-direction: column; border: 1px solid #fce7f3; overflow: hidden; }
         .chat-header { background: var(--dark-pink); color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; }
         .chat-header button { background: none; border: none; color: white; font-size: 18px; cursor: pointer; }
-        .chat-body { height: 250px; padding: 15px; background: #fdf2f8; overflow-y: auto; font-size: 14px; }
+        .chat-body { height: 300px; padding: 15px; background: #fdf2f8; overflow-y: auto; font-size: 14px; }
         .bot-msg { background: white; padding: 10px 15px; border-radius: 12px 12px 12px 0; color: #475569; margin-bottom: 10px; width: 85%; border: 1px solid #fbcfe8; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .user-msg { background: var(--primary); color: white; padding: 10px 15px; border-radius: 12px 12px 0 12px; margin-left: auto; margin-bottom: 10px; width: 80%; text-align: right; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         .chat-footer { padding: 15px; background: white; display: flex; gap: 10px; border-top: 1px solid #fce7f3; }
         .chat-footer input { flex: 1; padding: 10px; border: 1px solid #fbcfe8; border-radius: 6px; outline: none; }
         .chat-footer button { background: var(--primary); color: white; border: none; padding: 10px 15px; border-radius: 6px; cursor: pointer; font-weight: 600; }
@@ -306,7 +127,6 @@
 
     <nav>
         <div class="nav-left-section">
-            <!-- Hamburger Menu (3 Horizontal Lines) -->
             <div class="menu-container">
                 <button class="hamburger-btn" onclick="toggleNavMenu()">☰</button>
                 <div class="dropdown-menu" id="navDropdown">
@@ -315,18 +135,13 @@
                     <a href="#">📜 Terms & Conditions</a>
                 </div>
             </div>
-
             <div class="logo-box">
                 <span class="made-in-india-top">Made in India 🇮🇳</span>
                 <a href="#" class="logo">Trusted<span>Basket</span></a>
-                <div class="sub-logo-info">
-                    <span class="tagline">By India, For India</span>
-                </div>
+                <div class="sub-logo-info"><span class="tagline">By India, For India</span></div>
             </div>
         </div>
-        
         <div class="nav-right-items">
-            <!-- Language Selector -->
             <select class="lang-selector" id="langSelect">
                 <option value="hi">हिंदी</option>
                 <option value="en">English</option>
@@ -336,12 +151,11 @@
 
     <section class="hero">
         <h1>इंटरनेट के अनावश्यक शोर से बचें और केवल प्रामाणिक जानकारी पाएं</h1>
-        <p>TrustedBasket एक फ्री* सॉफ्टवेयर है। अपनी रुचियों का चयन करें और हमारा एडवांस्ड AI आपको हर महत्वपूर्ण अपडेट की सटीक* व्याख्या (Analysis) प्रदान करेगा。</p>
-        
+        <p>TrustedBasket एक फ्री* सॉफ्टवेयर है। अपनी रुचियों का चयन करें और हमारा एडवांस्ड AI आपको हर महत्वपूर्ण अपडेट की सटीक* व्याख्या (Analysis) प्रदान करेगा।</p>
         <div class="exclusive-features">
             <h4>⭐ Only TrustedBasket Free* Features:</h4>
             <div class="feature-list">
-                <span>🤖 AI Smart Vyakhya (व्याख्या)</span>
+                <span>🤖 AI Smart Vyakhya</span>
                 <span>⏰ Auto-Reminders</span>
                 <span>💬 AI Assistant</span>
                 <span>✅ Verified* Sources</span>
@@ -349,20 +163,12 @@
         </div>
     </section>
 
-    <!-- Age Calculator -->
     <section class="age-calc-section">
         <h3 style="color: var(--dark-pink); margin-bottom: 15px;">⏳ Age Calculator (उम्र निकालें)</h3>
         <p style="font-size: 14px; color: #475569; margin-top: -10px; margin-bottom: 20px;">सरकारी फॉर्म भरने के लिए अपनी सटीक उम्र चेक करें (बिना किसी इंटरनेट के)।</p>
-        
         <div class="age-calc-box">
-            <div class="input-group">
-                <label>जन्म तिथि (DOB):</label><br>
-                <input type="date" id="dobInput">
-            </div>
-            <div class="input-group">
-                <label>किस तारीख तक (As on):</label><br>
-                <input type="date" id="asOnDate">
-            </div>
+            <div class="input-group"><label>जन्म तिथि (DOB):</label><br><input type="date" id="dobInput"></div>
+            <div class="input-group"><label>किस तारीख तक (As on):</label><br><input type="date" id="asOnDate"></div>
             <button class="btn-calc" onclick="calculateAge()">Calculate Age</button>
         </div>
         <div id="ageResult"></div>
@@ -370,80 +176,45 @@
 
     <section class="filters">
         <h3>अपनी रुचियों का चयन करें</h3>
-        <p>अपनी आवश्यकतानुसार एक या एक से अधिक श्रेणियां चुनें:</p>
+        <p>जिस श्रेणी की खबरें देखनी हैं, उस पर क्लिक करें:</p>
         
         <div class="chips">
-            <!-- 1. PIB -->
-            <div class="chip" onclick="this.classList.toggle('active')">
-                <b>🏛️ PIB</b><br>
-                <span style="font-size: 11.5px; font-weight: 600; color: #64748b; margin-top: 4px; display: inline-block;">Official Govt. Press Releases<br>(Crucial for Competitive Exams)</span>
-            </div>
-            
-            <!-- 2. Govt Job Alert -->
-            <div class="chip" onclick="this.classList.toggle('active')">🎓 Government Job Alert (UPSC, SSC, Banking etc.)</div>
-            
-            <!-- 3. PSU Jobs -->
-            <div class="chip" onclick="this.classList.toggle('active')">
-                <b>🏢 PSU Jobs</b><br>
-                <span style="font-size: 11.5px; font-weight: 600; color: #64748b; margin-top: 4px; display: inline-block;">Public Sector Undertakings<br>(Maharatna, Navratna & Govt. Companies)</span>
-            </div>
-            
-            <!-- 4. Banking & Finance -->
-            <div class="chip" onclick="this.classList.toggle('active')">
-                <b>🏦 Banking & Finance</b><br>
-                <span style="font-size: 11.5px; font-weight: 600; color: #64748b; margin-top: 4px; display: inline-block;">RBI, SBI, HDFC etc.</span>
-            </div>
-            
-            <!-- 5. MSME -->
-            <div class="chip" onclick="this.classList.toggle('active')">
-                <span style="font-size: 11px; font-weight: 700; color: var(--primary); text-transform: uppercase;">Business Related</span><br>
-                <b>🏭 MSME</b><br>
-                <span style="font-size: 11.5px; font-weight: 600; color: #64748b; margin-top: 4px; display: inline-block;">GST, FSSAI etc.</span>
-            </div>
-            
-            <!-- 6. Global Health / WHO -->
-            <div class="chip" onclick="this.classList.toggle('active')">
-                <b>🩺 WHO</b><br>
-                <span style="font-size: 12px; font-weight: 600; color: #64748b; margin-top: 4px; display: inline-block;">Global Health</span>
-            </div>
+            <div class="chip active" onclick="filterNews('All', this)"><b>🌟 सभी ख़बरें</b><br><span style="color: #64748b;">All Updates</span></div>
+            <div class="chip" onclick="filterNews('Govt News', this)"><b>🏛️ PIB</b><br><span style="color: #64748b;">Official Govt. Press Releases</span></div>
+            <div class="chip" onclick="filterNews('SSC & UPSC', this)"><b>🎓 SSC & UPSC</b><br><span style="color: #64748b;">Government Job Alerts</span></div>
+            <div class="chip" onclick="filterNews('Banking', this)"><b>🏦 Banking</b><br><span style="color: #64748b;">SBI, IBPS, RBI Updates</span></div>
+            <div class="chip" onclick="filterNews('Business & MSME', this)"><b>🏭 MSME & FSSAI</b><br><span style="color: #64748b;">Business & Factory Rules</span></div>
         </div>
     </section>
 
-    <!-- News Grid (Emptied as requested, cards removed) -->
-    <div class="news-grid">
-        <!-- Future AI injected news cards will appear here -->
-    </div>
+    <div id="loading" class="loading">ताज़ा ख़बरें लोड हो रही हैं... ⏳</div>
+    <div class="news-grid" id="news-container"></div>
 
     <div class="banner-container">
-        
         <section class="donation-banner">
             <h3>💖 Donation & Social Welfare</h3>
-            <p>आपके द्वारा दिया गया सहयोग सीधे तौर রাখা ज़रूरतमंद छात्रों की शिक्षा और समाज की भलाई जैसी आवश्यक चीज़ों पर खर्च किया जाएगा। <br><br>इसके अतिरिक्त, इस सहयोग का उपयोग इस फ्री* सॉफ्टवेयर को सुचारू रूप से चलाने (सर्वर और मेंटेनेंस) में किया जाएगा। <b>आपके डोनेशन को पारदर्शी बनाने के लिए खर्च का विवरण सार्वजनिक किया जाएगा*।</b> (यह डोनेशन पूरी तरह स्वैच्छिक* है)।</p>
+            <p>आपके द्वारा दिया गया सहयोग सीधे तौर पर ज़रूरतमंद छात्रों की शिक्षा और समाज की भलाई पर खर्च किया जाएगा। <br><br>इस सहयोग का उपयोग इस फ्री* सॉफ्टवेयर को सुचारू रूप से चलाने में किया जाएगा। (यह डोनेशन पूरी तरह स्वैच्छिक* है)।</p>
             <a href="#" class="btn-donate">💖 Donate</a>
         </section>
 
         <section class="wa-banner">
             <h3>⭐ WhatsApp Alerts (वैकल्पिक)</h3>
-            <p>TrustedBasket प्लेटफॉर्म एक फ्री* सॉफ्टवेयर है। यदि आप चाहते हैं कि <b>तुरंत और केवल आपकी चुनी हुई रुचियों (Interests) की ताज़ा न्यूज़ सबसे पहले डिटेल में सीधे आपके WhatsApp पर भेजी जाए</b>, तो इसके लिए <b>मासिक चार्ज ₹49* है</b>। <br><br>यह राशि प्लेटफॉर्म की कमाई नहीं है, बल्कि <b>Meta (WhatsApp API) के सर्वर और मैसेजिंग चार्ज*</b> का भुगतान करने हेतु ली जाती है। (यह सुविधा पूरी तरह वैकल्पिक है)।</p>
+            <p>तुरंत और केवल आपकी चुनी हुई रुचियों (Interests) की ताज़ा न्यूज़ सीधे WhatsApp पर पाने के लिए मासिक चार्ज ₹49* है। <br><br>यह राशि केवल Meta (WhatsApp API) के सर्वर चार्ज के भुगतान हेतु ली जाती है।</p>
             <a href="#" class="btn-wa">🟢 Subscribe for WhatsApp Alerts</a>
         </section>
 
         <section class="telegram-banner">
             <h3>⭐ Telegram Bot (फ्री)</h3>
-            <p>आप हमारे Telegram Bot से जुड़कर भी सीधे अपने फोन पर फास्ट अलर्ट्स पा सकते हैं। यह सेवा पूरी तरह <b>मुफ्त</b> है और इसमें आपको कोई अतिरिक्त चार्ज नहीं देना होगा। ताज़ा अपडेट्स सीधे टेलीग्राम पर पाएं।</p>
+            <p>आप हमारे Telegram Bot से जुड़कर भी सीधे अपने फोन पर फास्ट अलर्ट्स पा सकते हैं। यह सेवा पूरी तरह मुफ्त है।</p>
             <a href="https://t.me/Trustedbasket_bot" target="_blank" class="btn-telegram">✈️ Join Telegram Bot</a>
         </section>
-
     </div>
 
     <footer>
         <p><b>Copyright © 2026 TrustedBasket. All rights reserved.</b></p>
-        
-        <!-- Link to the T&C page -->
         <a href="#" class="footer-terms-link">Read Terms & Conditions</a>
     </footer>
 
-    <!-- AI Chat Modal -->
     <div id="aiChatModal" class="chat-modal">
         <div class="chat-header">
             <span>🤖 AI Assistant</span>
@@ -453,82 +224,100 @@
             <p class="bot-msg">नमस्ते! मैं TrustedBasket का AI असिस्टेंट हूँ। आप मुझसे किसी भी सरकारी योजना, एग्जाम या न्यूज़ के बारे में पूछ सकते हैं।</p>
         </div>
         <div class="chat-footer">
-            <input type="text" id="chatInput" placeholder="अपना सवाल पूछें...">
+            <input type="text" id="chatInput" placeholder="अपना सवाल पूछें..." onkeypress="if(event.key === 'Enter') sendChatMessage()">
             <button onclick="sendChatMessage()">Send</button>
         </div>
     </div>
 
-    <!-- Floating AI Button -->
-    <button class="ai-help-btn" onclick="toggleChat()">
-        🤖 AI Help Box
-    </button>
+    <button class="ai-help-btn" onclick="toggleChat()">🤖 AI Help Box</button>
 
-    <!-- JavaScript Execution -->
     <script>
-        // Toggle Hamburger Navigation Menu
+        // 1. Navigation Menu
         function toggleNavMenu() {
             const menu = document.getElementById('navDropdown');
             menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
         }
-
-        // Close menu if clicked outside
         document.addEventListener('click', function(event) {
             const menu = document.getElementById('navDropdown');
             const btn = document.querySelector('.hamburger-btn');
-            if (menu.style.display === 'flex' && !menu.contains(event.target) && !btn.contains(event.target)) {
+            if (menu && menu.style.display === 'flex' && !menu.contains(event.target) && !btn.contains(event.target)) {
                 menu.style.display = 'none';
             }
         });
 
-        // Age Calculator
+        // 2. Age Calculator
         function calculateAge() {
             const dob = document.getElementById('dobInput').value;
             const asOn = document.getElementById('asOnDate').value;
             const resultBox = document.getElementById('ageResult');
-
-            if (!dob || !asOn) {
-                resultBox.innerHTML = "<span style='color:red;'>कृपया दोनों तारीखें चुनें!</span>";
-                return;
-            }
-
-            const birthDate = new Date(dob);
-            const targetDate = new Date(asOn);
-
-            if (birthDate > targetDate) {
-                resultBox.innerHTML = "<span style='color:red;'>जन्म तिथि 'As on' तारीख से पहले की होनी चाहिए!</span>";
-                return;
-            }
-
+            if (!dob || !asOn) { resultBox.innerHTML = "<span style='color:red;'>कृपया दोनों तारीखें चुनें!</span>"; return; }
+            const birthDate = new Date(dob), targetDate = new Date(asOn);
+            if (birthDate > targetDate) { resultBox.innerHTML = "<span style='color:red;'>जन्म तिथि 'As on' तारीख से पहले की होनी चाहिए!</span>"; return; }
             let years = targetDate.getFullYear() - birthDate.getFullYear();
             let months = targetDate.getMonth() - birthDate.getMonth();
             let days = targetDate.getDate() - birthDate.getDate();
-
-            if (days < 0) {
-                months--;
-                const lastMonth = new Date(targetDate.getFullYear(), targetDate.getMonth(), 0);
-                days += lastMonth.getDate();
-            }
-            if (months < 0) {
-                years--;
-                months += 12;
-            }
-
+            if (days < 0) { months--; const lastMonth = new Date(targetDate.getFullYear(), targetDate.getMonth(), 0); days += lastMonth.getDate(); }
+            if (months < 0) { years--; months += 12; }
             resultBox.innerHTML = `✅ आपकी सटीक उम्र है: <br> ${years} साल, ${months} महीने, और ${days} दिन`;
         }
 
+        // 3. News Fetching & Filtering Logic
+        const API_URL = "https://script.google.com/macros/s/AKfycbxsZUO5AyLKL0Zc1Wh0HL05HDFeevJYBYHlhBn6MJzGAVvc54R2DapF2b8xXq9xE7IrxQ/exec"; 
+        let allNewsData = [];
+
+        async function fetchNews() {
+            try {
+                const response = await fetch(API_URL);
+                allNewsData = await response.json();
+                document.getElementById("loading").style.display = "none";
+                displayNews("All"); 
+            } catch (error) {
+                document.getElementById("loading").innerText = "डेटा लोड करने में सर्वर समस्या आई। कृपया रिफ्रेश करें।";
+            }
+        }
+
+        function displayNews(categoryFilter) {
+            const container = document.getElementById("news-container");
+            container.innerHTML = ""; 
+
+            const filteredData = categoryFilter === "All" ? allNewsData : allNewsData.filter(item => item.category === categoryFilter);
+
+            filteredData.forEach(item => {
+                const card = document.createElement("div");
+                card.className = "news-card";
+                const cleanSummary = item.summary.replace(/\*\*/g, '').replace(/\*/g, '• ');
+                card.innerHTML = `
+                    <div class="category-badge">${item.category}</div>
+                    <div class="news-title">${item.title}</div>
+                    <div class="news-date">📅 ${item.date}</div>
+                    <div class="news-summary">${cleanSummary}</div>
+                    <a href="${item.link}" target="_blank" class="read-more">पूरी खबर पढ़ें ➔</a>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterNews(category, btnElement) {
+            document.querySelectorAll('.chip').forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+            displayNews(category);
+        }
+
+        fetchNews();
+
+        // 4. AI Chatbot Logic
         function toggleChat() {
             const chatModal = document.getElementById('aiChatModal');
             chatModal.style.display = (chatModal.style.display === 'flex') ? 'none' : 'flex';
         }
 
-        // Live Gemini API Connector
         async function sendChatMessage() {
             const input = document.getElementById('chatInput');
             const chatBody = document.getElementById('chatBody');
             const userText = input.value.trim();
             
             if(userText !== "") {
-                chatBody.innerHTML += `<p style="background: var(--primary); color: white; padding: 10px 15px; border-radius: 12px 12px 0 12px; margin-left: auto; margin-bottom: 10px; width: 80%; text-align: right;">${userText}</p>`;
+                chatBody.innerHTML += `<p class="user-msg">${userText}</p>`;
                 
                 const loadingId = "loading-" + Date.now();
                 chatBody.innerHTML += `<p id="${loadingId}" class="bot-msg" style="color: gray;"><em>🤖 AI सोच रहा है...</em></p>`;
@@ -536,18 +325,16 @@
                 input.value = "";
                 chatBody.scrollTop = chatBody.scrollHeight;
 
-                const apiKey = "PASTE_YOUR_GEMINI_API_KEY_HERE"; 
-                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+                const apiKey = "AQ.Ab8RN6LTz_OtNxIVC1U3dXb3h7dZWhRlSsy_mA6XcaiyfboaCQ"; 
+                // Model changed to 3.6-flash to match user's working account settings
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${apiKey}`;
                 
                 try {
                     const response = await fetch(url, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
-                            contents: [{ parts: [{ text: userText }] }],
-                            systemInstruction: { 
-                                parts: [{ text: "तुम TrustedBasket के AI असिस्टेंट हो। यूज़र के सवालों का बहुत ही सटीक, छोटा और आसान हिंदी में जवाब दो।" }] 
-                            }
+                            contents: [{ parts: [{ text: userText }] }]
                         })
                     });
                     
@@ -556,102 +343,17 @@
                     if(data.candidates && data.candidates.length > 0) {
                         const aiReply = data.candidates[0].content.parts[0].text;
                         document.getElementById(loadingId).remove();
-                        chatBody.innerHTML += `<p class="bot-msg">${aiReply.replace(/\n/g, '<br>')}</p>`;
+                        chatBody.innerHTML += `<p class="bot-msg">${aiReply.replace(/\*\*/g, '').replace(/\n/g, '<br>')}</p>`;
                     } else {
                         throw new Error("No response");
                     }
-                    
                 } catch (error) {
-                    document.getElementById(loadingId).innerHTML = "<span style='color:red;'>⚠️ कृपया सही API Key डालें या इंटरनेट चेक करें!</span>";
+                    document.getElementById(loadingId).innerHTML = "<span style='color:red;'>⚠️ इंटरनेट या सर्वर में दिक्कत है।</span>";
                 }
                 
                 chatBody.scrollTop = chatBody.scrollHeight;
             }
         }
     </script>
-
 </body>
 </html>
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TrustedBasket - Govt, Banking & Job Alerts</title>
-    <style>
-        /* वेबसाइट का डिज़ाइन (CSS) */
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; }
-        .header { text-align: center; margin-bottom: 40px; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .header h1 { color: #1a73e8; margin: 0 0 10px 0; }
-        .header p { color: #5f6368; margin: 0; font-size: 16px; }
-        
-        .news-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; max-width: 1200px; margin: 0 auto; }
-        
-        .news-card { background: white; border-radius: 12px; padding: 20px; width: 320px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.2s; display: flex; flex-direction: column; }
-        .news-card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
-        
-        .category-badge { font-size: 12px; font-weight: bold; color: white; background: #1a73e8; padding: 5px 10px; border-radius: 20px; align-self: flex-start; margin-bottom: 12px; }
-        .news-title { font-size: 18px; font-weight: bold; margin-bottom: 10px; color: #202124; line-height: 1.4; }
-        .news-date { font-size: 12px; color: #80868b; margin-bottom: 15px; }
-        .news-summary { font-size: 14px; color: #4d5156; margin-bottom: 20px; line-height: 1.6; flex-grow: 1; }
-        
-        .read-more { text-decoration: none; color: #1a73e8; font-weight: bold; text-align: center; border-top: 1px solid #eee; padding-top: 15px; }
-        .loading { text-align: center; font-size: 18px; color: #1a73e8; font-weight: bold; margin-top: 50px; }
-    </style>
-</head>
-<body>
-
-    <div class="header">
-        <h1>TrustedBasket</h1>
-        <p>छात्रों और पेशेवरों के लिए सटीक सरकारी, बैंकिंग और MSME अपडेट्स</p>
-    </div>
-
-    <div id="loading" class="loading">ताज़ा ख़बरें लोड हो रही हैं... ⏳</div>
-    
-    <div id="news-container" class="news-container"></div>
-
-    <script>
-        // 👇 यहाँ अपना Deploy URL (Web App URL) डालें 👇
-        const API_URL = "https://script.google.com/macros/s/AKfycbxsZUO5AyLKL0Zc1Wh0HL05HDFeevJYBYHlhBn6MJzGAVvc54R2DapF2b8xXq9xE7IrxQ/exec"; 
-
-        async function fetchNews() {
-            try {
-                // API से डेटा मंगाना
-                const response = await fetch(API_URL);
-                const data = await response.json();
-                
-                // लोडिंग टेक्स्ट हटाना
-                document.getElementById("loading").style.display = "none";
-                const container = document.getElementById("news-container");
-                
-                // हर खबर के लिए एक नया कार्ड बनाना
-                data.forEach(item => {
-                    const card = document.createElement("div");
-                    card.className = "news-card";
-                    
-                    // AI Summary में Markdown (**) को हटाकर साफ करना
-                    const cleanSummary = item.summary.replace(/\*\*/g, '').replace(/\*/g, '• ');
-
-                    card.innerHTML = `
-                        <div class="category-badge">${item.category}</div>
-                        <div class="news-title">${item.title}</div>
-                        <div class="news-date">📅 ${item.date}</div>
-                        <div class="news-summary">${cleanSummary}</div>
-                        <a href="${item.link}" target="_blank" class="read-more">पूरी खबर पढ़ें ➔</a>
-                    `;
-                    container.appendChild(card);
-                });
-            } catch (error) {
-                document.getElementById("loading").innerText = "सर्वर से कनेक्ट करने में समस्या आई। कृपया बाद में प्रयास करें।";
-                console.error("Error fetching news:", error);
-            }
-        }
-
-        // वेबसाइट खुलते ही फंक्शन चलाएं
-        fetchNews();
-    </script>
-
-</body>
-</html>
-
-
