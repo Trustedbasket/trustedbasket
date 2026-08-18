@@ -6,7 +6,7 @@
     <title>TrustedBasket | Free* AI Alert Platform</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     
-    <!-- 🚀 Google Analytics -->
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-M8NL11TPWH"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -15,7 +15,7 @@
       gtag('config', 'G-M8NL11TPWH');
     </script>
 
-    <!-- 🚀 OneSignal Notifications -->
+    <!-- OneSignal Notifications -->
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script>
       window.OneSignalDeferred = window.OneSignalDeferred || [];
@@ -42,7 +42,6 @@
         .logo { font-size: 26px; font-weight: 800; text-decoration: none; color: white; line-height: 1.2; }
         .logo span { color: var(--accent); }
         .sub-logo-info { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
-        .tagline { font-size: 12px; font-weight: 600; color: #fbcfe8; }
         
         .hero { background: white; padding: 50px 5%; text-align: center; border-bottom: 2px solid #fce7f3; }
         .hero h1 { font-size: 34px; color: var(--dark-pink); margin-bottom: 15px; }
@@ -72,7 +71,7 @@
         .back-btn { background: var(--dark-pink); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; }
         
         .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-bottom: 40px; }
-        .news-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; border: 1px solid #fce7f3; transition: 0.3s; }
+        .news-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; border: 1px solid #fce7f3; }
         .category-badge { font-size: 12px; font-weight: bold; color: white; background: var(--primary); padding: 4px 10px; border-radius: 20px; align-self: flex-start; margin-bottom: 10px; }
         .news-title { font-size: 16px; font-weight: bold; margin-bottom: 10px; color: var(--dark-pink); line-height: 1.4; }
         .news-date { font-size: 12px; color: #80868b; margin-bottom: 15px; font-weight: 600; }
@@ -99,12 +98,14 @@
         .ai-help-btn { position: fixed; bottom: 30px; right: 30px; background: var(--dark-pink); color: white; padding: 15px 25px; border-radius: 50px; font-weight: 700; box-shadow: 0 10px 25px rgba(157, 23, 77, 0.4); cursor: pointer; border: 2px solid var(--accent); z-index: 1000; }
         .chat-modal { position: fixed; bottom: 95px; right: 30px; width: 330px; background: white; border-radius: 14px; box-shadow: 0 15px 35px rgba(0,0,0,0.25); z-index: 1001; display: none; flex-direction: column; border: 1px solid #fce7f3; overflow: hidden; }
         .chat-header { background: var(--dark-pink); color: white; padding: 12px 15px; display: flex; justify-content: space-between; font-weight: 700; }
+        .chat-header button { background: none; border: none; color: white; font-size: 18px; cursor: pointer; }
         .chat-body { height: 280px; padding: 15px; background: #fdf2f8; overflow-y: auto; font-size: 13.5px; }
         .bot-msg { background: white; padding: 10px 12px; border-radius: 12px 12px 12px 0; color: #334155; margin-bottom: 10px; width: 88%; border: 1px solid #fbcfe8; }
         .user-msg { background: var(--primary); color: white; padding: 10px 12px; border-radius: 12px 12px 0 12px; margin-left: auto; margin-bottom: 10px; width: 85%; text-align: right; }
         .chat-footer { padding: 10px 15px; background: white; display: flex; gap: 8px; border-top: 1px solid #fce7f3; }
         .chat-footer input { flex: 1; padding: 8px 12px; border: 1px solid #fbcfe8; border-radius: 6px; outline: none; }
         .chat-footer button { background: var(--primary); color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: 600; }
+        
         .tc-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 600px; background: white; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); z-index: 2000; display: none; padding: 25px; max-height: 80vh; overflow-y: auto; }
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1999; display: none; }
     </style>
@@ -128,21 +129,15 @@
                 <a href="#" class="logo" onclick="showHome()">Trusted<span>Basket</span></a>
             </div>
         </div>
+        <div class="nav-right-items">
+            <div id="google_translate_element"></div>
+        </div>
     </nav>
 
     <div id="homeView">
         <section class="hero">
             <h1>इंटरनेट के अनावश्यक शोर से बचें और केवल प्रामाणिक जानकारी पाएं</h1>
             <p>TrustedBasket एक फ्री* सॉफ्टवेयर है। अपनी रुचियों का चयन करें और हमारा एडवांस्ड AI आपको हर महत्वपूर्ण अपडेट की सटीक* व्याख्या (Analysis) प्रदान करेगा।</p>
-            <div class="exclusive-features">
-                <h4>⭐ Only TrustedBasket Free* Features:</h4>
-                <div class="feature-list">
-                    <span>🤖 AI Smart Vyakhya</span>
-                    <span>⏰ Auto-Reminders</span>
-                    <span>🔖 Save & Share</span>
-                    <span>✅ Verified* Sources</span>
-                </div>
-            </div>
         </section>
 
         <section class="filters">
@@ -175,24 +170,19 @@
     </div>
 
     <div class="banner-container">
-        <!-- 1. Support Banner -->
         <section class="donation-banner">
             <h3>💖 Support* & Social Welfare</h3>
-            <p style="font-size: 14px; line-height: 1.6;">आपके द्वारा दिया गया सहयोग सीधे तौर पर ज़रूरतमंद छात्रों की शिक्षा और समाज की भलाई जैसी आवश्यक चीज़ों पर खर्च किया जाएगा। इसके अतिरिक्त, इस सहयोग का उपयोग इस फ्री* सॉफ्टवेयर को सुचारू रूप से चलाने (सर्वर और मेंटेनेंस) में किया जाएगा। पारदर्शिता के लिए खर्च का विवरण सार्वजनिक किया जाएगा*। (यह सहयोग पूरी तरह स्वैच्छिक* है)।</p>
-            <a href="APNA_PAYMENT_LINK_YAHA_DAALEIN" target="_blank" class="btn-donate">💖 Support Us</a>
+            <p style="font-size: 14px;">आपके द्वारा दिया गया सहयोग सीधे तौर पर ज़रूरतमंद छात्रों की शिक्षा और समाज की भलाई पर खर्च किया जाएगा। पारदर्शिता के लिए खर्च का विवरण सार्वजनिक किया जाएगा*। (यह सहयोग पूरी तरह स्वैच्छिक* है)।</p>
+            <a href="APNA_PAYMENT_LINK_DAALEIN" target="_blank" class="btn-donate">💖 Support Us</a>
         </section>
-        
-        <!-- 2. WhatsApp Banner -->
         <section class="wa-banner">
             <h3>⭐ WhatsApp Alerts (वैकल्पिक)</h3>
-            <p style="font-size: 14px; line-height: 1.6;">तुरंत और केवल अपनी पसंदीदा रुचियों की ताज़ा न्यूज़ WhatsApp पर पाएं। <b>मासिक चार्ज ₹49*</b> केवल Meta API सर्वर चार्ज हेतु है।</p>
-            <a href="APNA_WHATSAPP_LINK_YAHA_DAALEIN" target="_blank" class="btn-wa">🟢 Subscribe for VIP Alerts</a>
+            <p style="font-size: 14px;">तुरंत और केवल अपनी पसंदीदा रुचियों की ताज़ा न्यूज़ WhatsApp पर पाएं। <b>मासिक चार्ज ₹49*</b> केवल Meta API सर्वर चार्ज हेतु है।</p>
+            <a href="APNA_WHATSAPP_LINK_DAALEIN" target="_blank" class="btn-wa">🟢 Subscribe for VIP Alerts</a>
         </section>
-        
-        <!-- 3. Telegram Banner -->
         <section class="telegram-banner">
             <h3>⭐ Telegram Bot (फ्री)</h3>
-            <p style="font-size: 14px; line-height: 1.6;">हमारी फ्री कम्युनिटी से जुड़कर सीधे अपने फोन पर फास्ट अलर्ट्स और डेली राउंडअप प्राप्त करें।</p>
+            <p style="font-size: 14px;">हमारी फ्री कम्युनिटी से जुड़कर सीधे अपने फोन पर फास्ट अलर्ट्स और डेली राउंडअप प्राप्त करें।</p>
             <a href="https://t.me/Trustedbasket_bot" target="_blank" class="btn-telegram">✈️ Join Free Group</a>
         </section>
     </div>
@@ -200,15 +190,14 @@
     <footer>
         <p><b>Copyright © 2026 TrustedBasket. All rights reserved.</b></p>
         <div class="footer-links">
-            <a onclick="showTC()">Terms & Conditions</a> | 
-            <a onclick="showPrivacy()">Privacy Policy</a>
+            <a onclick="showTC()">Terms & Conditions</a> | <a onclick="showPrivacy()">Privacy Policy</a>
         </div>
     </footer>
 
     <button class="ai-help-btn" onclick="toggleChat()">🤖 AI Assistant</button>
     <div id="aiChatModal" class="chat-modal">
         <div class="chat-header"><span>🤖 TrustedBasket AI Assistant</span><button onclick="toggleChat()">✖</button></div>
-        <div class="chat-body" id="chatBody"><p class="bot-msg">नमस्ते! AI असिस्टेंट हूँ। सरकार, बैंक या परीक्षा का कुछ भी पूछें!</p></div>
+        <div class="chat-body" id="chatBody"><p class="bot-msg">नमस्ते! AI असिस्टेंट हूँ। आप मुझसे किसी भी सरकारी योजना, एग्जाम या न्यूज़ के बारे में पूछ सकते हैं।</p></div>
         <div class="chat-footer"><input type="text" id="chatInput" placeholder="पूछें..." onkeypress="if(event.key === 'Enter') sendChatMessage()"><button onclick="sendChatMessage()">Send</button></div>
     </div>
 
@@ -216,23 +205,23 @@
     <div class="modal-overlay" id="tcOverlay" onclick="closeModals()"></div>
     <div class="tc-modal" id="aboutModal">
         <h3 style="color: var(--dark-pink);">ℹ️ About TrustedBasket</h3>
-        <p style="font-size: 13.5px;"><b>हमारा विज़न:</b> इंटरनेट की भ्रामक जानकारी के बीच से सबसे प्रामाणिक जानकारी लाना। <br><b>विश्वास:</b> PIB, RBI, WHO जैसे आधिकारिक स्रोतों से डेटा।</p>
+        <p style="font-size: 13.5px;"><b>Vision:</b> इंटरनेट पर मौजूद भ्रामक जानकारी (Noise) के बीच से सबसे प्रामाणिक जानकारी लाना। <br><b>Trust:</b> केवल सरकारी स्रोत (PIB, RBI, WHO) का उपयोग।</p>
         <button onclick="closeModals()" style="background: var(--dark-pink); color: white; padding: 8px 20px; border-radius: 6px; border:none; cursor: pointer; float: right;">Close</button>
     </div>
-
     <div class="tc-modal" id="tcModal">
         <h3 style="color: var(--dark-pink);">📜 Terms & Conditions</h3>
-        <p style="font-size: 13.5px;"><b>1. Free Platform (*):</b> निशुल्क सेवा। <br><b>2. AI Accuracy (*):</b> AI आधारित सारांश। <br><b>3. Messaging (*):</b> ₹49 मासिक WhatsApp शुल्क। <br><b>4. Support (*):</b> स्वैच्छिक योगदान, पारदर्शिता के लिए रिपोर्ट साझा की जाएगी। <br><b>5. Verified Sources:</b> केवल सरकारी स्रोत।</p>
+        <p style="font-size: 13.5px;"><b>1. Free Platform (*):</b> निशुल्क सेवा। <br><b>2. AI Accuracy (*):</b> AI आधारित सारांश। <br><b>3. Messaging (*):</b> ₹49 मासिक WhatsApp शुल्क (सर्वर चार्ज)। <br><b>4. Support (*):</b> स्वैच्छिक योगदान, पारदर्शिता हेतु रिपोर्ट सार्वजनिक की जाएगी। <br><b>5. Verified Sources:</b> केवल सरकारी डेटा।</p>
         <button onclick="closeModals()" style="background: var(--dark-pink); color: white; padding: 8px 20px; border-radius: 6px; border:none; cursor: pointer; float: right;">Close</button>
     </div>
-
     <div class="tc-modal" id="privacyModal">
         <h3 style="color: var(--dark-pink);">🔒 Privacy Policy</h3>
-        <p style="font-size: 13.5px;"><b>1. Data:</b> व्यक्तिगत डेटा सुरक्षित। <br><b>2. Services:</b> Google Analytics, OneSignal, AI का उपयोग।</p>
+        <p style="font-size: 13.5px;"><b>1. Data:</b> कोई व्यक्तिगत डेटा नहीं। <br><b>2. Services:</b> Analytics & Notifications का उपयोग।</p>
         <button onclick="closeModals()" style="background: var(--dark-pink); color: white; padding: 8px 20px; border-radius: 6px; border:none; cursor: pointer; float: right;">Close</button>
     </div>
 
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script>
+        function googleTranslateElementInit() { new google.translate.TranslateElement({pageLanguage: 'hi', includedLanguages: 'hi,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element'); }
         const API_URL = "https://script.google.com/macros/s/AKfycbxsZUO5AyLKL0Zc1Wh0HL05HDFeevJYBYHlhBn6MJzGAVvc54R2DapF2b8xXq9xE7IrxQ/exec";
         let allNewsData = [];
 
@@ -252,7 +241,7 @@
             if (allNewsData.length === 0) { try { const r = await fetch(API_URL); allNewsData = await r.json(); } catch(e) {} }
             const grid = document.getElementById('categoryNewsGrid'); grid.innerHTML = "";
             const filtered = allNewsData.filter(item => item.category === categoryName);
-            filtered.forEach((item, index) => grid.appendChild(createNewsCard(item)));
+            filtered.forEach(item => grid.appendChild(createNewsCard(item)));
         }
 
         function createNewsCard(item) {
@@ -271,7 +260,7 @@
         }
 
         function showSavedNewsPage() {
-            document.getElementById('homeView').style.display = 'none'; document.getElementById('newsFeedView').style.display = 'none'; document.getElementById('savedNewsView').style.display = 'block'; document.getElementById('navDropdown').style.display = 'none';
+            document.getElementById('homeView').style.display = 'none'; document.getElementById('newsFeedView').style.display = 'none'; document.getElementById('savedNewsView').style.display = 'block';
             const grid = document.getElementById('savedNewsGrid'); grid.innerHTML = "";
             let list = JSON.parse(localStorage.getItem('tb_saved_news')) || [];
             if(list.length === 0) { grid.innerHTML = "<p style='text-align:center;'>कोई बुकमार्क नहीं है।</p>"; return; }
