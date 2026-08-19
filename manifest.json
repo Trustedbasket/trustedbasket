@@ -1,0 +1,17 @@
+{
+  "name": "TrustedBasket VIP",
+  "short_name": "TrustedBasket",
+  "description": "Govt Jobs, MSME & Finance Alerts",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0410",
+  "theme_color": "#e60073",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
