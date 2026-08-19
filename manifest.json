@@ -1,24 +1,15 @@
 {
   "name": "TrustedBasket VIP",
   "short_name": "TrustedBasket",
-  "description": "Govt Jobs, MSME & Finance Alerts",
-  "start_url": "https://trustedbasket.github.io/trustedbasket/",
-  "scope": "https://trustedbasket.github.io/trustedbasket/",
+  "start_url": "index.html",
   "display": "standalone",
   "background_color": "#0a0410",
   "theme_color": "#e60073",
   "icons": [
     {
-      "src": "https://trustedbasket.github.io/trustedbasket/logo.png?v=2",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "https://trustedbasket.github.io/trustedbasket/logo.png?v=2",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "src": "logo.png",
+      "sizes": "any",
+      "type": "image/png"
     }
   ]
 }
