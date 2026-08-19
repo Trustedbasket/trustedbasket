@@ -328,7 +328,7 @@
         <hr style="border: 0; border-top: 1px solid #fce7f3; margin-bottom: 15px;">
         <div style="font-size: 13.5px; color: #475569; line-height: 1.7;">
             <p><b>1. Data Collection (डेटा संग्रह):</b> हम डिफ़ॉल्ट रूप से आपकी कोई भी व्यक्तिगत जानकारी (जैसे नाम या ईमेल) इकट्ठा नहीं करते हैं। एनालिटिक्स (Google Analytics) के उद्देश्य से केवल सामान्य और गैर-व्यक्तिगत जानकारी (जैसे डिवाइस प्रकार) एकत्र की जा सकती है।</p>
-            <p><b>2. WhatsApp Alerts:</b> यदि आप स्वैच्छिक रूप से WhatsApp अलर्ट्स चुनते हैं, तो आपका नंबर पूरी तरह सुरक्षित रखा जाता है और इसे किसी भी तीसरे पक्ष (Third-Party) को विज्ञापनों के लिए बेचा या साझा नहीं किया जाता।</p>
+            <p><b>2. WhatsApp Alerts:</b> यदि आप स्वैच्छिक रूप से WhatsApp अलर्ट्स चुनते हैं, out आपका नंबर पूरी तरह सुरक्षित रखा जाता है और इसे किसी भी तीसरे पक्ष (Third-Party) को विज्ञापनों के लिए बेचा या साझा नहीं किया जाता।</p>
             <p><b>3. Third-Party Services:</b> यह वेबसाइट Google Analytics, Gemini AI और सार्वजनिक RSS फीड्स का उपयोग करती है। इनकी अपनी अलग गोपनीयता नीतियां हो सकती हैं।</p>
             <p><b>4. Cookies:</b> वेबसाइट के अनुभव को बेहतर और तेज़ बनाने के लिए हम कुकीज़ (Cookies) का उपयोग कर सकते हैं।</p>
         </div>
@@ -346,7 +346,9 @@
     <script>
         // 🚀 Real API URL
         const API_URL = "https://script.google.com/macros/s/AKfycbxsZUO5AyLKL0Zc1Wh0HL05HDFeevJYBYHlhBn6MJzGAVvc54R2DapF2b8xXq9xE7IrxQ/exec";
-        let allNewsData = [];
+        
+        // 1. allNewsData की जगह newsCache ऑब्जेक्ट बनाएँ (सुपरफास्ट स्पीड के लिए)
+        let newsCache = {};
 
         // 🚀 Dropdown Menu Logic (Click outside to close)
         function toggleNavMenu() {
@@ -399,6 +401,7 @@
             window.scrollTo(0, 0);
         }
 
+        // 🚀 FAST LOADING LOGIC (सिर्फ क्लिक की गई केटेगरी का डेटा मंगाएगा)
         async function openCategoryPage(categoryName) {
             closeDropdown();
             document.getElementById('homeView').style.display = 'none';
@@ -411,22 +414,29 @@
             grid.innerHTML = "";
             window.scrollTo(0, 0);
 
-            if (allNewsData.length === 0) {
+            // अगर यह केटेगरी पहले से कैशे (Cache) में नहीं है, तभी सर्वर से मंगाएं
+            if (!newsCache[categoryName]) {
                 try {
-                    const response = await fetch(API_URL);
-                    allNewsData = await response.json();
-                } catch(e) {}
+                    // API में पैरामीटर भेज रहे हैं कि सिर्फ इसी केटेगरी का डेटा दो
+                    const fetchUrl = API_URL + "?category=" + encodeURIComponent(categoryName);
+                    const response = await fetch(fetchUrl);
+                    newsCache[categoryName] = await response.json();
+                } catch(e) {
+                    console.error("Data Fetch Error:", e);
+                }
             }
 
             document.getElementById('loadingText').style.display = 'none';
-            const filtered = allNewsData.filter(item => item.category === categoryName);
+            
+            // अब फिल्टर करने की ज़रूरत नहीं है, सर्वर ने सिर्फ उसी केटेगरी का डेटा भेजा है
+            const categoryNews = newsCache[categoryName] || [];
 
-            if (filtered.length === 0) {
+            if (categoryNews.length === 0) {
                 grid.innerHTML = "<p style='grid-column: 1/-1; text-align:center; color:#64748b;'>इस श्रेणी में आज कोई नया अपडेट नहीं है।</p>";
                 return;
             }
 
-            filtered.forEach(item => {
+            categoryNews.forEach(item => {
                 grid.appendChild(createNewsCard(item));
             });
         }
