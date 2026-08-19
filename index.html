@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <!-- 🚀 Link Sharing Card (WhatsApp/Telegram Preview) -->
+    <!-- 🚀 Link Sharing Card (WhatsApp/Telegram Preview) - FIXED PATHS -->
+<meta name="description" content="Sabse pahle, AI Summary ke sath aapki bhasha mein. 3 aasan point mein AI vyakhya.">
 <meta property="og:title" content="Current Affairs, GOV/PSU Jobs, Rules & Banking News">
 <meta property="og:description" content="Sabse pahle, AI Summary ke sath aapki bhasha mein. 3 aasan point mein AI vyakhya.">
-<meta property="og:image" content="https://trustedbasket.github.io/banner.jpg">
-<meta property="og:url" content="https://trustedbasket.github.io/">
+<meta property="og:image" content="https://trustedbasket.github.io/trustedbasket/banner.jpg">
+<meta property="og:url" content="https://trustedbasket.github.io/trustedbasket/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -401,7 +402,7 @@
             window.scrollTo(0, 0);
         }
 
-        // 🚀 FAST LOADING LOGIC (सिर्फ क्लिक की गई केटेगरी का डेटा मंगाएगा)
+        // 🚀 FAST LOADING LOGIC (Bulletproof Safety ke sath)
         async function openCategoryPage(categoryName) {
             closeDropdown();
             document.getElementById('homeView').style.display = 'none';
@@ -420,7 +421,10 @@
                     // API में पैरामीटर भेज रहे हैं कि सिर्फ इसी केटेगरी का डेटा दो
                     const fetchUrl = API_URL + "?category=" + encodeURIComponent(categoryName);
                     const response = await fetch(fetchUrl);
-                    newsCache[categoryName] = await response.json();
+                    const fetchedData = await response.json();
+                    
+                    // 🛡️ DOUBLE SAFETY FILTER: Taki error na aaye aur sirf wahi news dikhe jo click ki hai
+                    newsCache[categoryName] = fetchedData.filter(item => item.category === categoryName);
                 } catch(e) {
                     console.error("Data Fetch Error:", e);
                 }
