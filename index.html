@@ -68,12 +68,12 @@
 
                 /* Custom Lang Selector Styling */
         .lang-selector { background: white; color: var(--dark-pink); border: 2px solid var(--accent); padding: 8px 10px; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; outline: none; }
-        
-        /* Hide Original Google Translate Widget & Banner */
-        #google_translate_element { position: absolute; opacity: 0; z-index: -10; pointer-events: none; }
-        .goog-te-banner-frame, iframe.goog-te-banner-frame { display: none !important; }
-        
+
+                /* Hide Original Google Translate Widget & Banner Forever */
+        #google_translate_element { position: absolute; opacity: 0; z-index: -10; pointer-events: none; display: none !important; }
+        .goog-te-banner-frame, iframe.goog-te-banner-frame, .skiptranslate > iframe { display: none !important; visibility: hidden !important; }
         .goog-te-balloon-frame { display: none !important; }
+        body { top: 0px !important; position: static !important; }
 
         .goog-tooltip, #goog-gt-tt, .goog-tooltip:hover { display: none !important; visibility: hidden !important; }
         .goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
