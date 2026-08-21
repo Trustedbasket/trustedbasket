@@ -7,9 +7,11 @@
     <meta property="og:description" content="Sabse pahle, AI Summary ke sath aapki bhasha mein.">
     <meta property="og:url" content="https://trustedbasket.github.io/trustedbasket/">
 
+    <!-- 🚀 Link Sharing Card (WhatsApp/Telegram Preview) -->
     <meta name="description" content="Sabse pahle, AI Summary ke sath aapki bhasha mein. 3 aasan point mein AI vyakhya.">
     <meta name="twitter:card" content="summary_large_image">
 
+    <!-- 📱 Add to Home Screen (App Shortcut) -->
     <link rel="icon" href="logo.png">
     <link rel="apple-touch-icon" href="logo.png">
     <link rel="manifest" href="manifest.json">
@@ -19,6 +21,7 @@
     <title>TrustedBasket | Free* AI Alert Platform</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     
+    <!-- 🚀 Google Analytics Code -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-M8NL11TPWH"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -27,6 +30,7 @@
       gtag('config', 'G-M8NL11TPWH');
     </script>
 
+    <!-- 🚀 OneSignal Web Push Notifications -->
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script>
       window.OneSignalDeferred = window.OneSignalDeferred || [];
@@ -73,9 +77,8 @@
         
         .age-calc-section { background: white; padding: 25px 5%; text-align: center; border-bottom: 2px solid #fce7f3; }
         .age-calc-box { background: #fff1f2; border: 1px solid #fbcfe8; max-width: 800px; margin: 0 auto; padding: 20px; border-radius: 12px; display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; align-items: flex-end; }
-        .input-group { text-align: left; position: relative; }
+        .input-group { text-align: left; }
         .input-group label { font-size: 13px; font-weight: 700; color: var(--dark-pink); }
-        /* Placeholder styling for Age Calculator to ensure DD/MM/YYYY prompt */
         .input-group input { padding: 10px; border: 1px solid #fbcfe8; border-radius: 6px; outline: none; margin-top: 5px; width: 150px; font-family: 'Inter', sans-serif;}
         .btn-calc { background: var(--primary); color: white; border: none; padding: 11px 25px; border-radius: 6px; font-weight: 700; cursor: pointer; }
         #ageResult { font-size: 16px; font-weight: 700; color: var(--dark-pink); margin-top: 15px; }
@@ -90,9 +93,9 @@
         #homeView { display: block; }
         .page-view-container { display: none; padding: 30px 5%; max-width: 1200px; margin: 0 auto; width: 100%; }
         
-        .feed-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 2px solid #fce7f3; padding-bottom: 15px; flex-wrap: wrap; gap: 10px;}
-        .feed-header-left { flex: 1; }
-        .feed-header-right { display: flex; align-items: center; gap: 15px; }
+        .feed-header { display: flex; flex-direction: column; align-items: flex-start; gap: 15px; margin-bottom: 25px; border-bottom: 2px solid #fce7f3; padding-bottom: 15px; }
+        .feed-header-top { width: 100%; }
+        .feed-header-bottom { display: flex; justify-content: space-between; width: 100%; align-items: center; }
         
         .back-btn { background: var(--dark-pink); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; }
         .btn-play-all { background:var(--green); color:white; border:none; padding:10px 18px; border-radius:8px; cursor:pointer; font-weight:bold; font-size:14px; display:flex; align-items:center; gap:5px; transition: 0.2s;}
@@ -174,18 +177,12 @@
             <p id="heroP">TrustedBasket एक फ्री* सॉफ्टवेयर है। अपनी रुचियों का चयन करें और हमारा एडवांस्ड AI आपको हर महत्वपूर्ण अपडेट की सटीक* व्याख्या (Analysis) प्रदान करेगा।</p>
         </section>
 
+        <!-- 🔥 Age Calculator: Clean Simple Input -->
         <section class="age-calc-section">
             <h3 style="color: var(--dark-pink); margin-bottom: 15px;">⏳ Age Calculator (उम्र निकालें)</h3>
             <div class="age-calc-box">
-                <!-- HTML5 Date Picker UI Trick for clear DD/MM/YYYY -->
-                <div class="input-group">
-                    <label>जन्म तिथि (DOB):</label><br>
-                    <input type="text" id="dobInput" placeholder="DD/MM/YYYY" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
-                </div>
-                <div class="input-group">
-                    <label>किस तारीख तक (As on):</label><br>
-                    <input type="text" id="asOnDate" placeholder="DD/MM/YYYY" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
-                </div>
+                <div class="input-group"><label>जन्म तिथि (DOB):</label><br><input type="date" id="dobInput"></div>
+                <div class="input-group"><label>किस तारीख तक (As on):</label><br><input type="date" id="asOnDate"></div>
                 <button class="btn-calc" onclick="calculateAge()">Calculate Age</button>
             </div>
             <div id="ageResult"></div>
@@ -232,6 +229,7 @@
     <!-- NEWS FEED VIEW -->
     <div id="newsFeedView" class="page-view-container">
         
+        <!-- 📍 Weather Box With Warning -->
         <div id="weatherBox" style="display: none; background: white; padding: 15px; border-radius: 10px; border: 1px solid #fce7f3; margin-bottom: 25px; width: 100%;">
             <h4 style="margin: 0 0 10px 0; color: var(--dark-pink);">📍 अपने शहर का मौसम देखें (Live)</h4>
             <div style="display:flex; gap:10px;">
@@ -239,17 +237,18 @@
                 <button onclick="getLiveWeather()" style="background:var(--primary); color:white; border:none; padding:8px 15px; border-radius:6px; cursor:pointer; font-weight:bold;">सर्च</button>
             </div>
             <div id="weatherResult" style="margin-top:10px; font-size:14px; font-weight:600; color:#475569;"></div>
+            <div style="margin-top:8px; font-size:12px; color:#ef4444; font-weight:bold;">⚠️ सावधानी: भारी बारिश, आंधी या तेज़ धुप होने पर सुरक्षित रहें और घर से कम निकलें।</div>
         </div>
 
         <div class="feed-header">
-            <div class="feed-header-left">
+            <div class="feed-header-top">
                 <h2 id="feedCategoryTitle" style="color: var(--dark-pink); margin: 0;">Category Feed</h2>
-                <div id="dynamicDayDate" style="font-size: 13.5px; font-weight: bold; color: var(--primary); margin-top: 5px; display: none;"></div>
+                <!-- 📅 Plain Date Format -->
+                <div id="dynamicDayDate" style="font-size: 14px; font-weight: bold; color: var(--primary); margin-top: 5px; display: none;"></div>
             </div>
-            
-            <div class="feed-header-right">
+            <div class="feed-header-bottom">
+                <button class="back-btn" id="backBtnNews" onclick="stopAudio(); showHome()">← मुख्य पृष्ठ पर लौटें (Back)</button>
                 <button id="playAllBtn" class="btn-play-all" onclick="togglePlayAllNews(this)">🔊 सभी ख़बरें सुनें</button>
-                <button class="back-btn" id="backBtnNews" onclick="stopAudio(); showHome()">← Back</button>
             </div>
         </div>
         
@@ -261,7 +260,7 @@
     <div id="savedNewsView" class="page-view-container">
         <div class="feed-header">
             <h2 style="color: var(--dark-pink); margin: 0;">🔖 Saved News</h2>
-            <button class="back-btn" id="backBtnSaved" onclick="stopAudio(); showHome()">← Back</button>
+            <button class="back-btn" id="backBtnSaved" onclick="stopAudio(); showHome()">← मुख्य पृष्ठ पर लौटें (Back)</button>
         </div>
         <div class="news-grid" id="savedNewsGrid"></div>
     </div>
@@ -298,7 +297,7 @@
             <button onclick="toggleChat()">✖</button>
         </div>
         <div class="chat-body" id="chatBody">
-            <p class="bot-msg">नमस्ते! मैं TrustedBasket का AI असिस्टेंट हूँ। आप मुझसे भारत सरकार की योजनाओं, किसी भी परीक्षा, या सामान्य ज्ञान का कोई भी सवाल पूछ सकते हैं।</p>
+            <p class="bot-msg">नमस्ते! मैं TrustedBasket का न्यूज़ AI असिस्टेंट हूँ। आप मुझसे ताज़ा ख़बरों, परीक्षाओं, या सामान्य ज्ञान से जुड़ा कोई भी सवाल पूछ सकते हैं।</p>
         </div>
         <div class="chat-footer">
             <input type="text" id="chatInput" placeholder="AI से कुछ भी पूछें..." onkeypress="if(event.key === 'Enter') sendChatMessage()">
@@ -309,6 +308,7 @@
 
     <div class="modal-overlay" id="tcOverlay" onclick="closeModals()"></div>
     
+    <!-- ORIGINAL ABOUT SECTION -->
     <div class="tc-modal" id="aboutModal">
         <h3 style="color: var(--dark-pink); margin-top: 0;">ℹ️ About TrustedBasket</h3>
         <hr style="border: 0; border-top: 1px solid #fce7f3; margin-bottom: 15px;">
@@ -319,7 +319,7 @@
         <button onclick="closeModals()" style="background: var(--dark-pink); color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; float: right; margin-top: 10px;">बंद करें (Close)</button>
     </div>
 
-    <!-- T&C and Privacy merged smoothly -->
+    <!-- ORIGINAL T&C WITH PRIVACY & WEATHER -->
     <div class="tc-modal" id="tcModal">
         <h3 style="color: var(--dark-pink); margin-top: 0;">📜 Terms, Conditions & Privacy (नियम एवं शर्तें)</h3>
         <hr style="border: 0; border-top: 1px solid #fce7f3; margin-bottom: 15px;">
@@ -328,11 +328,12 @@
             <p><b>2. AI Analysis & Accuracy (*):</b> प्लेटफॉर्म द्वारा प्रदान की गई संक्षिप्त व्याख्या (AI Summary) एल्गोरिद्म पर आधारित है। आधिकारिक निर्णयों हेतु मूल सरकारी स्रोत/लिंक का अवलोकन अनिवार्य है।</p>
             <p><b>3. Messaging & API Charges (*):</b> WhatsApp अलर्ट्स सेवा वैकल्पिक है। ₹49/- का मासिक शुल्क विशुद्ध रूप से Meta WhatsApp Business API गेटवे का तकनीकी संचरण शुल्क है।</p>
             <p><b>4. Verified Sources (*):</b> डेटा केवल PIB, RBI, FSSAI, UPSC, SSC आदि आधिकारिक सार्वजनिक डोमेन से संकलित किया जाता है।</p>
-            <p><b>5. Weather API & Privacy (*):</b> मौसम की लाइव जानकारी थर्ड-पार्टी ओपन सोर्स API से ली जाती है। यह वेबसाइट डिफ़ॉल्ट रूप से कोई भी व्यक्तिगत डेटा (Personal Data) एकत्र नहीं करती है। मौसम व अन्य जानकारी केवल सामान्य ज्ञान के लिए है।</p>
+            <p><b>5. Privacy & Weather API (*):</b> यह वेबसाइट डिफ़ॉल्ट रूप से आपका कोई भी व्यक्तिगत डेटा एकत्र नहीं करती है। मौसम की लाइव जानकारी थर्ड-पार्टी ओपन सोर्स API से ली जाती है, जो केवल सामान्य ज्ञान के लिए है।</p>
         </div>
         <button onclick="closeModals()" style="background: var(--dark-pink); color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; float: right; margin-top: 10px;">बंद करें (Close)</button>
     </div>
 
+    <!-- Google Translate Script -->
     <script type="text/javascript">
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({ pageLanguage: 'hi', includedLanguages: 'hi,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
@@ -344,6 +345,7 @@
         const API_URL = "https://script.google.com/macros/s/AKfycbxsZUO5AyLKL0Zc1Wh0HL05HDFeevJYBYHlhBn6MJzGAVvc54R2DapF2b8xXq9xE7IrxQ/exec";
         let newsCache = {};
         
+        // 🌐 PERFECT LANGUAGE TRANSLATOR FIX
         window.addEventListener('load', () => {
             const savedLang = localStorage.getItem('tb_lang') || 'hi';
             document.getElementById('langSelect').value = savedLang;
@@ -358,15 +360,6 @@
                     gtCombo.value = lang;
                     gtCombo.dispatchEvent(new Event('change'));
                 }
-            }
-            
-            const btnPlayAll = document.getElementById('playAllBtn');
-            if(lang === 'en') {
-                document.getElementById('heroH1').innerText = "Avoid Internet Noise and Get Only Authentic Information";
-                if(btnPlayAll && !btnPlayAll.classList.contains('playing')) btnPlayAll.innerText = "🔊 Listen All News";
-            } else {
-                document.getElementById('heroH1').innerText = "इंटरनेट के अनावश्यक शोर से बचें और केवल प्रामाणिक जानकारी पाएं";
-                if(btnPlayAll && !btnPlayAll.classList.contains('playing')) btnPlayAll.innerText = "🔊 सभी ख़बरें सुनें";
             }
         }
 
@@ -390,7 +383,7 @@
                 let wind = wData.current_weather.windspeed;
                 let humidity = wData.hourly.relativehumidity_2m[0] || "N/A";
                 
-                resBox.innerHTML = `🌤️ <b>${name}</b>: तापमान: <b>${temp}°C</b> | नमी (Humidity): <b>${humidity}%</b> | हवा: <b>${wind} km/h</b>`;
+                resBox.innerHTML = `🌤️ <b>${name}</b>: तापमान: <b>${temp}°C</b> | नमी: <b>${humidity}%</b> | हवा: <b>${wind} km/h</b>`;
             } catch(e) {
                 resBox.innerHTML = "⚠️ सर्वर एरर। कृपया फिर प्रयास करें।";
             }
@@ -407,8 +400,7 @@
             });
             let playAllBtn = document.getElementById('playAllBtn');
             if(playAllBtn) {
-                let isEng = document.getElementById('langSelect').value === 'en';
-                playAllBtn.innerHTML = isEng ? "🔊 Listen All News" : "🔊 सभी ख़बरें सुनें";
+                playAllBtn.innerHTML = "🔊 सभी ख़बरें सुनें";
                 playAllBtn.classList.remove('playing');
             }
         }
@@ -426,7 +418,7 @@
             currentUtterance.onend = function() { stopAudio(); };
             
             btnElement.classList.add('playing');
-            btnElement.innerHTML = isEng ? "⏹️ Stop Audio" : "⏹️ ऑडियो बंद करें";
+            btnElement.innerHTML = "⏹️ ऑडियो बंद करें";
             window.speechSynthesis.speak(currentUtterance);
         }
 
@@ -494,7 +486,7 @@
                 document.getElementById('weatherBox').style.display = 'block';
                 document.getElementById('dynamicDayDate').style.display = 'block';
                 const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-                document.getElementById('dynamicDayDate').innerText = "📅 आज: " + new Date().toLocaleDateString('hi-IN', options);
+                document.getElementById('dynamicDayDate').innerText = "आज: " + new Date().toLocaleDateString('hi-IN', options);
             } else {
                 document.getElementById('weatherBox').style.display = 'none';
                 document.getElementById('dynamicDayDate').style.display = 'none';
@@ -536,7 +528,7 @@
             let saveBtnText = isSaved ? '❌ Remove' : '🔖 Save';
             let safeTitle = item.title.replace(/'/g, "&#39;").replace(/"/g, "&quot;");
             
-            // 🔥 Date DIV has been completely removed from here
+            // ❌ No Date printed here anymore
             card.innerHTML = `
                 <div class="category-badge">${item.category}</div>
                 <div class="news-title">${item.title}</div>
