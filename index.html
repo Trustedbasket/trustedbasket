@@ -656,12 +656,17 @@
                 stopAudio();
                 return; 
             }
+
+                        stopAudio(); // नई खबर चलाने से पहले पुरानी बंद करें
             
-            stopAudio(); // नई खबर चलाने से पहले पुरानी बंद करें
+            // 🔥 स्मार्ट लैंग्वेज मैपिंग (चुनी हुई भाषा का ऑडियो)
+            let langMap = { 'hi': 'hi-IN', 'en': 'en-IN', 'bn': 'bn-IN', 'mr': 'mr-IN', 'gu': 'gu-IN', 'ta': 'ta-IN', 'te': 'te-IN' };
+            let selectedLang = document.getElementById('langSelect').value;
             
             currentUtterance = new SpeechSynthesisUtterance(text);
-            currentUtterance.lang = isEng ? 'en-IN' : 'hi-IN';
+            currentUtterance.lang = langMap[selectedLang] || 'hi-IN';
             currentUtterance.rate = 0.95; // पढ़ने की स्पीड
+
             currentUtterance.onend = function() { stopAudio(); };
             
             btnElement.classList.add('playing');
