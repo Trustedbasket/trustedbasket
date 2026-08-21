@@ -602,9 +602,10 @@
                 <div class="category-badge">${item.category}</div>
                 <div class="news-title">${item.title}</div>
                 <div class="news-summary">${cleanSummary}</div>
-                <div class="card-actions">
-
+                                <div class="card-actions">
+                    <button class="action-btn btn-listen" style="font-size:14px; color:var(--dark-pink);" onclick="togglePlaySingleNews(this)">🔊 सुनें</button>
                     <button class="action-btn btn-save" onclick='toggleBookmark(${JSON.stringify(item).replace(/'/g, "&#39;")}, this)'>${saveBtnText}</button>
+
                     <button class="action-btn btn-share" onclick="shareNews('${safeTitle}')">🔗 Share</button>
                     <a href="${item.link}" target="_blank" class="action-btn btn-read">मूल खबर ➔</a>
                 </div>
