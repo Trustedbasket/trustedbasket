@@ -517,13 +517,74 @@
                 return;
             }
 
-            categoryNews.forEach(item => {
+                        categoryNews.forEach(item => {
                 grid.appendChild(createNewsCard(item));
             });
         }
 
+        // 🌦️ SMART LIVE WEATHER & AQI API LOGIC
+        async function getLiveWeather() {
+            const city = document.getElementById('cityInput').value.trim();
+            const resBox = document.getElementById('weatherResult');
+            if(!city) return;
+            resBox.innerHTML = "⏳ मौसम और AQI लोड हो रहा है...";
+            try {
+                // 1. लोकेशन (Lat/Lon) निकालना
+                let geoRes = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1&language=hi`);
+                let geoData = await geoRes.json();
+                if(!geoData.results) { resBox.innerHTML = "❌ शहर नहीं मिला। कृपया सही नाम लिखें।"; return; }
+                let lat = geoData.results[0].latitude;
+                let lon = geoData.results[0].longitude;
+                let name = geoData.results[0].name;
+
+                // 2. वेदर डेटा (नमी और बारिश के आसार) निकालना
+                let wRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&hourly=relativehumidity_2m,precipitation_probability`);
+                let wData = await wRes.json();
+                let temp = wData.current_weather.temperature;
+                let wind = wData.current_weather.windspeed;
+                let humidity = wData.hourly.relativehumidity_2m[0] || 0;
+                let rainProb = wData.hourly.precipitation_probability[0] || 0;
+
+                // 3. प्रदूषण (AQI) का डेटा निकालना
+                let aqi = "N/A";
+                try {
+                    let aqiRes = await fetch(`https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&current=us_aqi`);
+                    let aqiData = await aqiRes.json();
+                    aqi = aqiData.current.us_aqi;
+                } catch(err) { console.log("AQI Error"); }
+
+                // 4. डायनामिक वार्निंग लॉजिक (Dynamic Caution Status)
+                let cautionHtml = "";
+                if (aqi !== "N/A" && aqi >= 150) {
+                    cautionHtml = `<div style="margin-top:10px; font-size:13px; color:#ef4444; font-weight:bold;">⚠️ प्रदूषण अलर्ट (AQI ${aqi}): हवा बहुत ख़राब है, बाहर जाते समय मास्क पहनें।</div>`;
+                } else if (temp >= 40) {
+                    cautionHtml = `<div style="margin-top:10px; font-size:13px; color:#ef4444; font-weight:bold;">⚠️ हीटवेव अलर्ट (${temp}°C): भीषण गर्मी है, धुप से बचें और पर्याप्त पानी पिएं।</div>`;
+                } else if (rainProb >= 50) {
+                    cautionHtml = `<div style="margin-top:10px; font-size:13px; color:#3b82f6; font-weight:bold;">☔ बारिश अलर्ट: बारिश की ${rainProb}% संभावना है, छाता साथ रखें।</div>`;
+                } else if (temp <= 10) {
+                    cautionHtml = `<div style="margin-top:10px; font-size:13px; color:#8b5cf6; font-weight:bold;">❄️ ठंड अलर्ट (${temp}°C): कड़ाके की ठंड है, गर्म कपड़े पहनकर ही बाहर निकलें।</div>`;
+                } else {
+                    cautionHtml = `<div style="margin-top:10px; font-size:13px; color:#10b981; font-weight:bold;">✅ स्थिति सामान्य: मौसम और हवा साफ़ है, आपका दिन शुभ हो! 😊</div>`;
+                }
+
+                // 5. पूरा बॉक्स प्रिंट करना
+                resBox.innerHTML = `
+                    <div style="background:#fdf2f8; padding:12px; border-radius:8px; margin-top:10px; border: 1px solid #fbcfe8; line-height: 1.8;">
+                        🌤️ <b>${name}</b> की ताज़ा स्थिति:<br>
+                        🌡️ तापमान: <b>${temp}°C</b> | 💧 नमी: <b>${humidity}%</b><br>
+                        💨 हवा की गति: <b>${wind} km/h</b> | ☔ बारिश के आसार: <b>${rainProb}%</b><br>
+                        🌍 AQI (प्रदूषण स्तर): <b>${aqi}</b>
+                    </div>
+                    ${cautionHtml}
+                `;
+            } catch(e) {
+                resBox.innerHTML = "⚠️ सर्वर एरर। कृपया फिर प्रयास करें।";
+            }
+        }
+
         // 🚀 Create News Card (With Save/Remove Feature)
         function createNewsCard(item) {
+
             const card = document.createElement("div");
             card.className = "news-card";
             const cleanSummary = item.summary.replace(/\*\*/g, '').replace(/\*/g, '• ');
