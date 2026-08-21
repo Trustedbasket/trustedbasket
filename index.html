@@ -267,13 +267,17 @@
             <div id="weatherResult" style="margin-top:10px; font-size:14px; font-weight:600; color:#475569;"></div>
         </div>
 
-        <div class="feed-header">
-            <div>
-                <h2 id="feedCategoryTitle" style="color: var(--dark-pink); margin: 0;">Category Feed</h2>
-                <!-- 🔥 DYNAMIC DATE BOX ADDED HERE -->
-                <div id="dynamicDayDate" style="font-size: 14px; font-weight: bold; color: var(--primary); margin-top: 5px; display: none;"></div>
+                <div class="feed-header" style="flex-direction: column; align-items: flex-start; gap: 15px;">
+            <div style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h2 id="feedCategoryTitle" style="color: var(--dark-pink); margin: 0;">Category Feed</h2>
+                    <div id="dynamicDayDate" style="font-size: 14px; font-weight: bold; color: var(--primary); margin-top: 5px; display: none;"></div>
+                </div>
+                <!-- Back बटन दबाने पर ऑडियो रुकने का लॉजिक जोड़ा गया है -->
+                <button class="back-btn" id="backBtnNews" onclick="if(typeof stopAudio === 'function') stopAudio(); showHome()">← मुख्य पृष्ठ पर लौटें (Back)</button>
             </div>
-            <button class="back-btn" id="backBtnNews" onclick="showHome()">← मुख्य पृष्ठ पर लौटें (Back)</button>
+            <!-- 🔊 Play All Audio Button -->
+            <button id="playAllBtn" onclick="togglePlayAllNews(this)" style="background:var(--green); color:white; border:none; padding:10px 18px; border-radius:8px; cursor:pointer; font-weight:bold; font-size:14px; display:flex; align-items:center; gap:5px; transition: 0.2s;">🔊 पूरी ख़बरें सुनें</button>
         </div>
         <div id="loadingText" style="text-align:center; font-weight:bold; color:var(--primary); margin:20px 0;">ताज़ा खबरें लोड हो रही हैं... ⏳</div>
         <div class="news-grid" id="categoryNewsGrid"></div>
