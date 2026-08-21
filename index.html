@@ -7,11 +7,9 @@
     <meta property="og:description" content="Sabse pahle, AI Summary ke sath aapki bhasha mein.">
     <meta property="og:url" content="https://trustedbasket.github.io/trustedbasket/">
 
-    <!-- 🚀 Link Sharing Card (WhatsApp/Telegram Preview) -->
     <meta name="description" content="Sabse pahle, AI Summary ke sath aapki bhasha mein. 3 aasan point mein AI vyakhya.">
     <meta name="twitter:card" content="summary_large_image">
 
-    <!-- 📱 Add to Home Screen (App Shortcut) -->
     <link rel="icon" href="logo.png">
     <link rel="apple-touch-icon" href="logo.png">
     <link rel="manifest" href="manifest.json">
@@ -21,7 +19,6 @@
     <title>TrustedBasket | Free* AI Alert Platform</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     
-    <!-- 🚀 Google Analytics Code -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-M8NL11TPWH"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -30,7 +27,6 @@
       gtag('config', 'G-M8NL11TPWH');
     </script>
 
-    <!-- 🚀 OneSignal Web Push Notifications -->
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script>
       window.OneSignalDeferred = window.OneSignalDeferred || [];
@@ -77,9 +73,10 @@
         
         .age-calc-section { background: white; padding: 25px 5%; text-align: center; border-bottom: 2px solid #fce7f3; }
         .age-calc-box { background: #fff1f2; border: 1px solid #fbcfe8; max-width: 800px; margin: 0 auto; padding: 20px; border-radius: 12px; display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; align-items: flex-end; }
-        .input-group { text-align: left; }
+        .input-group { text-align: left; position: relative; }
         .input-group label { font-size: 13px; font-weight: 700; color: var(--dark-pink); }
-        .input-group input { padding: 10px; border: 1px solid #fbcfe8; border-radius: 6px; outline: none; margin-top: 5px; width: 150px; }
+        /* Placeholder styling for Age Calculator to ensure DD/MM/YYYY prompt */
+        .input-group input { padding: 10px; border: 1px solid #fbcfe8; border-radius: 6px; outline: none; margin-top: 5px; width: 150px; font-family: 'Inter', sans-serif;}
         .btn-calc { background: var(--primary); color: white; border: none; padding: 11px 25px; border-radius: 6px; font-weight: 700; cursor: pointer; }
         #ageResult { font-size: 16px; font-weight: 700; color: var(--dark-pink); margin-top: 15px; }
 
@@ -92,8 +89,14 @@
 
         #homeView { display: block; }
         .page-view-container { display: none; padding: 30px 5%; max-width: 1200px; margin: 0 auto; width: 100%; }
+        
         .feed-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 2px solid #fce7f3; padding-bottom: 15px; flex-wrap: wrap; gap: 10px;}
+        .feed-header-left { flex: 1; }
+        .feed-header-right { display: flex; align-items: center; gap: 15px; }
+        
         .back-btn { background: var(--dark-pink); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        .btn-play-all { background:var(--green); color:white; border:none; padding:10px 18px; border-radius:8px; cursor:pointer; font-weight:bold; font-size:14px; display:flex; align-items:center; gap:5px; transition: 0.2s;}
+        .btn-play-all.playing { background: #ef4444; }
         
         .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-bottom: 40px; }
         .news-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; border: 1px solid #fce7f3; }
@@ -103,6 +106,8 @@
         
         .card-actions { display: flex; justify-content: space-between; border-top: 1px solid #fce7f3; padding-top: 15px; margin-top: auto; align-items: center; }
         .action-btn { background: none; border: none; font-size: 14px; font-weight: 700; cursor: pointer; transition: 0.2s; text-decoration: none; padding: 0; }
+        .btn-listen { color:var(--dark-pink); }
+        .btn-listen.playing { color: #ef4444; }
         .btn-save { color: #f59e0b; }
         .btn-share { color: #0088cc; }
         .btn-read { color: var(--primary); }
@@ -145,7 +150,6 @@
                     <a onclick="showSavedNewsPage()">🔖 Saved News</a>
                     <a onclick="showAbout()">ℹ️ About Us</a>
                     <a onclick="showTC()">📜 Terms & Conditions</a>
-                    <a onclick="showPrivacy()">🔒 Privacy Policy</a>
                 </div>
             </div>
             <div class="logo-box">
@@ -155,7 +159,6 @@
             </div>
         </div>
         <div class="nav-right-items">
-            <!-- Language auto-save implement kiya gaya hai -->
             <select class="lang-selector" id="langSelect" onchange="toggleLang(this.value)">
                 <option value="hi">हिंदी</option>
                 <option value="en">English</option>
@@ -169,22 +172,20 @@
         <section class="hero">
             <h1 id="heroH1">इंटरनेट के अनावश्यक शोर से बचें और केवल प्रामाणिक जानकारी पाएं</h1>
             <p id="heroP">TrustedBasket एक फ्री* सॉफ्टवेयर है। अपनी रुचियों का चयन करें और हमारा एडवांस्ड AI आपको हर महत्वपूर्ण अपडेट की सटीक* व्याख्या (Analysis) प्रदान करेगा।</p>
-            <div class="exclusive-features">
-                <h4>⭐ Only TrustedBasket Free* Features:</h4>
-                <div class="feature-list">
-                    <span>🤖 AI Smart Summary</span>
-                    <span>⏰ Auto-Reminders</span>
-                    <span>💬 AI Assistant</span>
-                    <span>✅ Verified* Sources</span>
-                </div>
-            </div>
         </section>
 
         <section class="age-calc-section">
             <h3 style="color: var(--dark-pink); margin-bottom: 15px;">⏳ Age Calculator (उम्र निकालें)</h3>
             <div class="age-calc-box">
-                <div class="input-group"><label>जन्म तिथि (DOB):</label><br><input type="date" id="dobInput"></div>
-                <div class="input-group"><label>किस तारीख तक (As on):</label><br><input type="date" id="asOnDate"></div>
+                <!-- HTML5 Date Picker UI Trick for clear DD/MM/YYYY -->
+                <div class="input-group">
+                    <label>जन्म तिथि (DOB):</label><br>
+                    <input type="text" id="dobInput" placeholder="DD/MM/YYYY" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+                </div>
+                <div class="input-group">
+                    <label>किस तारीख तक (As on):</label><br>
+                    <input type="text" id="asOnDate" placeholder="DD/MM/YYYY" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+                </div>
                 <button class="btn-calc" onclick="calculateAge()">Calculate Age</button>
             </div>
             <div id="ageResult"></div>
@@ -195,10 +196,9 @@
             <p id="interestDesc">किसी भी श्रेणी पर क्लिक करके उसकी ताज़ा खबरें देखें:</p>
             
             <div class="chips">
-                <!-- 🚀 New Categories With Maintained Descriptions -->
                 <div class="chip" onclick="openCategoryPage('आज की सबसे बड़ी ख़बरें')">
                     <b>🔥 आज की सबसे बड़ी ख़बरें</b><br>
-                    <span style="font-size: 11.5px; color: #64748b;">Today's 360° (मौसम, विदेश और काम की ख़बरें)</span>
+                    <span style="font-size: 11.5px; color: #64748b;">देश, विदेश, मौसम की ख़बरें</span>
                 </div>
                 <div class="chip" onclick="openCategoryPage('Govt & PIB Updates')">
                     <b>🏛️ Govt & PIB Updates</b><br>
@@ -229,16 +229,30 @@
         </section>
     </div>
 
-    <!-- NEWS FEED VIEW (With Play All Button) -->
+    <!-- NEWS FEED VIEW -->
     <div id="newsFeedView" class="page-view-container">
-        <div class="feed-header">
-            <div>
-                <h2 id="feedCategoryTitle" style="color: var(--dark-pink); margin: 0;">Category Feed</h2>
-                <!-- 🔊 Play All Audio Button -->
-                <button onclick="playAllNews()" style="background:var(--green); color:white; border:none; padding:8px 15px; border-radius:6px; margin-top:10px; cursor:pointer; font-weight:bold; font-size:13px;">▶️ सभी ख़बरें सुनें (Listen All)</button>
+        
+        <div id="weatherBox" style="display: none; background: white; padding: 15px; border-radius: 10px; border: 1px solid #fce7f3; margin-bottom: 25px; width: 100%;">
+            <h4 style="margin: 0 0 10px 0; color: var(--dark-pink);">📍 अपने शहर का मौसम देखें (Live)</h4>
+            <div style="display:flex; gap:10px;">
+                <input type="text" id="cityInput" placeholder="शहर का नाम (उदा: Delhi)" style="padding:8px; border:1px solid #fbcfe8; border-radius:6px; flex:1; outline:none; font-size:14px;">
+                <button onclick="getLiveWeather()" style="background:var(--primary); color:white; border:none; padding:8px 15px; border-radius:6px; cursor:pointer; font-weight:bold;">सर्च</button>
             </div>
-            <button class="back-btn" id="backBtnNews" onclick="stopAudio(); showHome()">← मुख्य पृष्ठ पर लौटें (Back)</button>
+            <div id="weatherResult" style="margin-top:10px; font-size:14px; font-weight:600; color:#475569;"></div>
         </div>
+
+        <div class="feed-header">
+            <div class="feed-header-left">
+                <h2 id="feedCategoryTitle" style="color: var(--dark-pink); margin: 0;">Category Feed</h2>
+                <div id="dynamicDayDate" style="font-size: 13.5px; font-weight: bold; color: var(--primary); margin-top: 5px; display: none;"></div>
+            </div>
+            
+            <div class="feed-header-right">
+                <button id="playAllBtn" class="btn-play-all" onclick="togglePlayAllNews(this)">🔊 सभी ख़बरें सुनें</button>
+                <button class="back-btn" id="backBtnNews" onclick="stopAudio(); showHome()">← Back</button>
+            </div>
+        </div>
+        
         <div id="loadingText" style="text-align:center; font-weight:bold; color:var(--primary); margin:20px 0;">ताज़ा खबरें लोड हो रही हैं... ⏳</div>
         <div class="news-grid" id="categoryNewsGrid"></div>
     </div>
@@ -247,7 +261,7 @@
     <div id="savedNewsView" class="page-view-container">
         <div class="feed-header">
             <h2 style="color: var(--dark-pink); margin: 0;">🔖 Saved News</h2>
-            <button class="back-btn" id="backBtnSaved" onclick="stopAudio(); showHome()">← मुख्य पृष्ठ पर लौटें (Back)</button>
+            <button class="back-btn" id="backBtnSaved" onclick="stopAudio(); showHome()">← Back</button>
         </div>
         <div class="news-grid" id="savedNewsGrid"></div>
     </div>
@@ -255,12 +269,12 @@
     <div class="banner-container">
         <section class="donation-banner">
             <h3>💖 Support* & Social Welfare</h3>
-            <p>सहयोग सीधे तौर पर जरूरतमंद छात्रों की शिक्षा और समाज की भलाई पर खर्च किया जाएगा। इसके अतिरिक्त, इस सहयोग का उपयोग इस फ्री* सॉफ्टवेयर को सुचारू रूप से चलाने (सर्वर और मेंटेनेंस) में किया जाएगा। पारदर्शिता के लिए खर्च का विवरण सार्वजनिक किया जाएगा*। (यह सहयोग पूरी तरह स्वैच्छिक* है)।</p>
+            <p>सहयोग सीधे तौर पर जरूरतमंद छात्रों की शिक्षा और समाज की भलाई पर खर्च किया जाएगा।</p>
             <a href="APNA_PAYMENT_LINK_YAHAN_DAALEIN" target="_blank" class="btn-donate">💖 Support Us</a>
         </section>
         <section class="wa-banner">
             <h3>⭐ WhatsApp Alerts (वैकल्पिक)</h3>
-            <p>तुरंत और केवल अपनी पसंदीदा रुचियों की ताज़ा न्यूज़ WhatsApp पर पाएं। <b>मासिक चार्ज ₹49*</b> केवल Meta API सर्वर चार्ज हेतु है।</p>
+            <p>तुरंत और केवल अपनी पसंदीदा रुचियों की ताज़ा न्यूज़ WhatsApp पर पाएं।</p>
             <a href="APNA_WHATSAPP_LINK_YAHAN_DAALEIN" target="_blank" class="btn-wa">🟢 Subscribe for VIP Alerts</a>
         </section>
         <section class="telegram-banner">
@@ -273,8 +287,7 @@
     <footer>
         <p><b>Copyright © 2026 TrustedBasket. All rights reserved.</b></p>
         <div class="footer-links">
-            <a onclick="showTC()">Terms & Conditions</a> | 
-            <a onclick="showPrivacy()">Privacy Policy</a>
+            <a onclick="showTC()">Terms & Conditions (नियम एवं शर्तें)</a>
         </div>
     </footer>
 
@@ -285,7 +298,7 @@
             <button onclick="toggleChat()">✖</button>
         </div>
         <div class="chat-body" id="chatBody">
-            <p class="bot-msg">नमस्ते! मैं TrustedBasket का AI असिस्टेंट हूँ। आप मुझसे भारत सरकार की योजनाओं, किसी भी परीक्षा, बैंकिंग नियमों या सामान्य ज्ञान का कोई भी सवाल पूछ सकते हैं।</p>
+            <p class="bot-msg">नमस्ते! मैं TrustedBasket का AI असिस्टेंट हूँ। आप मुझसे भारत सरकार की योजनाओं, किसी भी परीक्षा, या सामान्य ज्ञान का कोई भी सवाल पूछ सकते हैं।</p>
         </div>
         <div class="chat-footer">
             <input type="text" id="chatInput" placeholder="AI से कुछ भी पूछें..." onkeypress="if(event.key === 'Enter') sendChatMessage()">
@@ -301,37 +314,25 @@
         <hr style="border: 0; border-top: 1px solid #fce7f3; margin-bottom: 15px;">
         <div style="font-size: 13.5px; color: #475569; line-height: 1.7;">
             <p><b>हमारा विज़न (Our Vision):</b> इंटरनेट पर मौजूद असीमित और भ्रामक जानकारी (Noise) के बीच से छात्रों और पेशेवरों के लिए सबसे प्रामाणिक, सटीक और जरूरी जानकारी छांटकर लाना।</p>
-            <p><b>हम पर विश्वास क्यों करें? (Why Trust Us?):</b> हम केवल भारत सरकार के आधिकारिक स्रोतों (PIB), मान्यता प्राप्त संस्थाओं (RBI, WHO) और प्रतिष्ठित पोर्टल्स से ही अपना डेटा प्राप्त करते हैं। हमारा एडवांस्ड AI बिना किसी इंसानी पक्षपात के आपको सीधा और स्पष्ट निष्कर्ष (Summary) देता है।</p>
-            <p><b>हमारा लक्ष्य:</b> आपका कीमती समय बचाना और आपको हमेशा सही जानकारी के साथ सबसे आगे रखना।</p>
+            <p><b>हम पर विश्वास क्यों करें?:</b> हम केवल भारत सरकार के आधिकारिक स्रोतों (PIB), मान्यता प्राप्त संस्थाओं (RBI, WHO) और प्रतिष्ठित पोर्टल्स से ही अपना डेटा प्राप्त करते हैं।</p>
         </div>
         <button onclick="closeModals()" style="background: var(--dark-pink); color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; float: right; margin-top: 10px;">बंद करें (Close)</button>
     </div>
 
+    <!-- T&C and Privacy merged smoothly -->
     <div class="tc-modal" id="tcModal">
-        <h3 style="color: var(--dark-pink); margin-top: 0;">📜 Terms & Conditions (नियम एवं शर्तें)</h3>
+        <h3 style="color: var(--dark-pink); margin-top: 0;">📜 Terms, Conditions & Privacy (नियम एवं शर्तें)</h3>
         <hr style="border: 0; border-top: 1px solid #fce7f3; margin-bottom: 15px;">
         <div style="font-size: 13.5px; color: #475569; line-height: 1.7;">
             <p><b>1. Free Platform Disclaimer (*):</b> TrustedBasket मूल रूप से एक निशुल्क सूचनात्मक मंच है। सार्वजनिक सर्वर लागत एवं मेंटेनेंस स्वैच्छिक सहयोग पर निर्भर है।</p>
             <p><b>2. AI Analysis & Accuracy (*):</b> प्लेटफॉर्म द्वारा प्रदान की गई संक्षिप्त व्याख्या (AI Summary) एल्गोरिद्म पर आधारित है। आधिकारिक निर्णयों हेतु मूल सरकारी स्रोत/लिंक का अवलोकन अनिवार्य है।</p>
             <p><b>3. Messaging & API Charges (*):</b> WhatsApp अलर्ट्स सेवा वैकल्पिक है। ₹49/- का मासिक शुल्क विशुद्ध रूप से Meta WhatsApp Business API गेटवे का तकनीकी संचरण शुल्क है।</p>
             <p><b>4. Verified Sources (*):</b> डेटा केवल PIB, RBI, FSSAI, UPSC, SSC आदि आधिकारिक सार्वजनिक डोमेन से संकलित किया जाता है।</p>
+            <p><b>5. Weather API & Privacy (*):</b> मौसम की लाइव जानकारी थर्ड-पार्टी ओपन सोर्स API से ली जाती है। यह वेबसाइट डिफ़ॉल्ट रूप से कोई भी व्यक्तिगत डेटा (Personal Data) एकत्र नहीं करती है। मौसम व अन्य जानकारी केवल सामान्य ज्ञान के लिए है।</p>
         </div>
         <button onclick="closeModals()" style="background: var(--dark-pink); color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; float: right; margin-top: 10px;">बंद करें (Close)</button>
     </div>
 
-    <div class="tc-modal" id="privacyModal">
-        <h3 style="color: var(--dark-pink); margin-top: 0;">🔒 Privacy Policy (गोपनीयता नीति)</h3>
-        <hr style="border: 0; border-top: 1px solid #fce7f3; margin-bottom: 15px;">
-        <div style="font-size: 13.5px; color: #475569; line-height: 1.7;">
-            <p><b>1. Data Collection (डेटा संग्रह):</b> हम डिफ़ॉल्ट रूप से आपकी कोई भी व्यक्तिगत जानकारी (जैसे नाम या ईमेल) इकट्ठा नहीं करते हैं। एनालिटिक्स (Google Analytics) के उद्देश्य से केवल सामान्य और गैर-व्यक्तिगत जानकारी (जैसे डिवाइस प्रकार) एकत्र की जा सकती है।</p>
-            <p><b>2. WhatsApp Alerts:</b> यदि आप स्वैच्छिक रूप से WhatsApp अलर्ट्स चुनते हैं, out आपका नंबर पूरी तरह सुरक्षित रखा जाता है और इसे किसी भी तीसरे पक्ष (Third-Party) को विज्ञापनों के लिए बेचा या साझा नहीं किया जाता।</p>
-            <p><b>3. Third-Party Services:</b> यह वेबसाइट Google Analytics, Gemini AI और सार्वजनिक RSS फीड्स का उपयोग करती है। इनकी अपनी अलग गोपनीयता नीतियां हो सकती हैं।</p>
-            <p><b>4. Cookies:</b> वेबसाइट के अनुभव को बेहतर और तेज़ बनाने के लिए हम कुकीज़ (Cookies) का उपयोग कर सकते हैं।</p>
-        </div>
-        <button onclick="closeModals()" style="background: var(--dark-pink); color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; float: right; margin-top: 10px;">बंद करें (Close)</button>
-    </div>
-
-    <!-- Google Translate Script -->
     <script type="text/javascript">
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({ pageLanguage: 'hi', includedLanguages: 'hi,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
@@ -343,7 +344,6 @@
         const API_URL = "https://script.google.com/macros/s/AKfycbxsZUO5AyLKL0Zc1Wh0HL05HDFeevJYBYHlhBn6MJzGAVvc54R2DapF2b8xXq9xE7IrxQ/exec";
         let newsCache = {};
         
-        // 🌐 Language Auto-Save & Translation Trigger
         window.addEventListener('load', () => {
             const savedLang = localStorage.getItem('tb_lang') || 'hi';
             document.getElementById('langSelect').value = savedLang;
@@ -359,79 +359,107 @@
                     gtCombo.dispatchEvent(new Event('change'));
                 }
             }
-            const backBtn1 = document.getElementById('backBtnNews');
-            const backBtn2 = document.getElementById('backBtnSaved');
-            const loadingText = document.getElementById('loadingText');
+            
+            const btnPlayAll = document.getElementById('playAllBtn');
             if(lang === 'en') {
                 document.getElementById('heroH1').innerText = "Avoid Internet Noise and Get Only Authentic Information";
-                document.getElementById('heroP').innerText = "TrustedBasket is a free* software. Select your interests and our advanced AI provides accurate* analysis.";
-                document.getElementById('interestTitle').innerText = "Select your interests";
-                document.getElementById('interestDesc').innerText = "Click on any category to view the latest news:";
-                if(backBtn1) backBtn1.innerText = "← Back to Home";
-                if(backBtn2) backBtn2.innerText = "← Back to Home";
-                if(loadingText) loadingText.innerText = "Loading latest news... ⏳";
+                if(btnPlayAll && !btnPlayAll.classList.contains('playing')) btnPlayAll.innerText = "🔊 Listen All News";
             } else {
                 document.getElementById('heroH1').innerText = "इंटरनेट के अनावश्यक शोर से बचें और केवल प्रामाणिक जानकारी पाएं";
-                document.getElementById('heroP').innerText = "TrustedBasket एक फ्री* सॉफ्टवेयर है। अपनी रुचियों का चयन करें और हमारा एडवांस्ड AI आपको हर महत्वपूर्ण अपडेट की सटीक* व्याख्या (Analysis) प्रदान करेगा।";
-                document.getElementById('interestTitle').innerText = "अपनी रुचियों का चयन करें";
-                document.getElementById('interestDesc').innerText = "किसी भी श्रेणी पर क्लिक करके उसकी ताज़ा खबरें देखें:";
-                if(backBtn1) backBtn1.innerText = "← मुख्य पृष्ठ पर लौटें (Back)";
-                if(backBtn2) backBtn2.innerText = "← मुख्य पृष्ठ पर लौटें (Back)";
-                if(loadingText) loadingText.innerText = "ताज़ा खबरें लोड हो रही हैं... ⏳";
+                if(btnPlayAll && !btnPlayAll.classList.contains('playing')) btnPlayAll.innerText = "🔊 सभी ख़बरें सुनें";
             }
         }
 
-        // 🔊 Audio (Web Speech API) Functions
+        async function getLiveWeather() {
+            const city = document.getElementById('cityInput').value.trim();
+            const resBox = document.getElementById('weatherResult');
+            if(!city) return;
+            resBox.innerHTML = "⏳ मौसम लोड हो रहा है...";
+            try {
+                let geoRes = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1&language=hi`);
+                let geoData = await geoRes.json();
+                if(!geoData.results) { resBox.innerHTML = "❌ शहर नहीं मिला। कृपया सही नाम लिखें।"; return; }
+                
+                let lat = geoData.results[0].latitude;
+                let lon = geoData.results[0].longitude;
+                let name = geoData.results[0].name;
+                
+                let wRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&hourly=relativehumidity_2m`);
+                let wData = await wRes.json();
+                let temp = wData.current_weather.temperature;
+                let wind = wData.current_weather.windspeed;
+                let humidity = wData.hourly.relativehumidity_2m[0] || "N/A";
+                
+                resBox.innerHTML = `🌤️ <b>${name}</b>: तापमान: <b>${temp}°C</b> | नमी (Humidity): <b>${humidity}%</b> | हवा: <b>${wind} km/h</b>`;
+            } catch(e) {
+                resBox.innerHTML = "⚠️ सर्वर एरर। कृपया फिर प्रयास करें।";
+            }
+        }
+
         let currentUtterance = null;
         function stopAudio() {
             if (window.speechSynthesis && window.speechSynthesis.speaking) {
                 window.speechSynthesis.cancel();
             }
+            document.querySelectorAll('.btn-listen').forEach(b => {
+                b.innerHTML = "🔊 सुनें";
+                b.classList.remove('playing');
+            });
+            let playAllBtn = document.getElementById('playAllBtn');
+            if(playAllBtn) {
+                let isEng = document.getElementById('langSelect').value === 'en';
+                playAllBtn.innerHTML = isEng ? "🔊 Listen All News" : "🔊 सभी ख़बरें सुनें";
+                playAllBtn.classList.remove('playing');
+            }
         }
-        function speakNews(text) {
-            stopAudio();
-            var lang = document.getElementById('langSelect').value === 'en' ? 'en-IN' : 'hi-IN';
+
+        function triggerSpeech(text, btnElement) {
+            let isEng = document.getElementById('langSelect').value === 'en';
+            if (btnElement.classList.contains('playing')) {
+                stopAudio();
+                return; 
+            }
+            stopAudio(); 
             currentUtterance = new SpeechSynthesisUtterance(text);
-            currentUtterance.lang = lang;
+            currentUtterance.lang = isEng ? 'en-IN' : 'hi-IN';
             currentUtterance.rate = 0.95; 
+            currentUtterance.onend = function() { stopAudio(); };
+            
+            btnElement.classList.add('playing');
+            btnElement.innerHTML = isEng ? "⏹️ Stop Audio" : "⏹️ ऑडियो बंद करें";
             window.speechSynthesis.speak(currentUtterance);
         }
-        function playAllNews() {
-            stopAudio();
+
+        function togglePlaySingleNews(btnElement) {
+            let card = btnElement.closest('.news-card');
+            let title = card.querySelector('.news-title').innerText;
+            let summary = card.querySelector('.news-summary').innerText;
+            triggerSpeech(title + ". " + summary, btnElement);
+        }
+
+        function togglePlayAllNews(btnElement) {
             var cards = document.querySelectorAll('#categoryNewsGrid .news-card');
             if(cards.length === 0) return;
-            var fullText = "आज की ताज़ा ख़बरें शुरू हो रही हैं। . ";
+            let isEng = document.getElementById('langSelect').value === 'en';
+            var fullText = isEng ? "Top updates starting. " : "आज की ताज़ा ख़बरें शुरू हो रही हैं। . ";
             cards.forEach((card, index) => {
                 var title = card.querySelector('.news-title').innerText;
                 var summary = card.querySelector('.news-summary').innerText;
-                fullText += `खबर नंबर ${index + 1}: ${title}. ${summary}. `;
+                fullText += `News Number ${index + 1}: ${title}. ${summary}. `;
             });
-            speakNews(fullText);
+            triggerSpeech(fullText, btnElement);
         }
 
         function toggleNavMenu() {
             const menu = document.getElementById('navDropdown');
             menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
         }
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('navDropdown');
-            const hamburgerBtn = document.querySelector('.hamburger-btn');
-            if (menu.style.display === 'flex') {
-                if (!menu.contains(event.target) && !hamburgerBtn.contains(event.target)) {
-                    menu.style.display = 'none';
-                }
-            }
-        });
         function closeDropdown() { document.getElementById('navDropdown').style.display = 'none'; }
         
         function showTC() { closeDropdown(); closeModals(); document.getElementById('tcOverlay').style.display = 'block'; document.getElementById('tcModal').style.display = 'block'; }
         function showAbout() { closeDropdown(); closeModals(); document.getElementById('tcOverlay').style.display = 'block'; document.getElementById('aboutModal').style.display = 'block'; }
-        function showPrivacy() { closeDropdown(); closeModals(); document.getElementById('tcOverlay').style.display = 'block'; document.getElementById('privacyModal').style.display = 'block'; }
         function closeModals() {
-            document.getElementById('tcOverlay').style.display = 'none';
-            document.getElementById('tcModal').style.display = 'none';
-            document.getElementById('aboutModal').style.display = 'none';
-            document.getElementById('privacyModal').style.display = 'none';
+            document.querySelectorAll('.tc-modal, .modal-overlay').forEach(el => el.style.display = 'none');
         }
 
         function calculateAge() {
@@ -461,6 +489,16 @@
             document.getElementById('newsFeedView').style.display = 'block';
             document.getElementById('feedCategoryTitle').innerText = categoryName + " Updates";
             document.getElementById('loadingText').style.display = 'block';
+            
+            if (categoryName === 'आज की सबसे बड़ी ख़बरें') {
+                document.getElementById('weatherBox').style.display = 'block';
+                document.getElementById('dynamicDayDate').style.display = 'block';
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                document.getElementById('dynamicDayDate').innerText = "📅 आज: " + new Date().toLocaleDateString('hi-IN', options);
+            } else {
+                document.getElementById('weatherBox').style.display = 'none';
+                document.getElementById('dynamicDayDate').style.display = 'none';
+            }
             
             const grid = document.getElementById('categoryNewsGrid');
             grid.innerHTML = "";
@@ -492,25 +530,19 @@
             const card = document.createElement("div");
             card.className = "news-card";
             
-            // <b> tag preserve karna sheet se (backend generates <b> now)
             let cleanSummary = item.summary.replace(/\*/g, '• ');
-            
             let savedList = JSON.parse(localStorage.getItem('tb_saved_news')) || [];
             let isSaved = savedList.some(savedItem => savedItem.title === item.title);
             let saveBtnText = isSaved ? '❌ Remove' : '🔖 Save';
             let safeTitle = item.title.replace(/'/g, "&#39;").replace(/"/g, "&quot;");
             
-            // Audio ke liye HTML tags hatana aur strings safe banana
-            let textToSpeak = (item.title + ". " + cleanSummary).replace(/<[^>]*>?/gm, '').replace(/"/g, ' ');
-            let safeText = encodeURIComponent(textToSpeak);
-            
+            // 🔥 Date DIV has been completely removed from here
             card.innerHTML = `
                 <div class="category-badge">${item.category}</div>
                 <div class="news-title">${item.title}</div>
-                <div style="font-size:12px; color:#80868b; margin-bottom:10px;">📅 ${item.date}</div>
                 <div class="news-summary">${cleanSummary}</div>
                 <div class="card-actions">
-                    <button class="action-btn" style="color:var(--dark-pink); font-size:16px;" onclick="speakNews(decodeURIComponent('${safeText}'))">🔊 सुनें</button>
+                    <button class="action-btn btn-listen" style="font-size:14px;" onclick="togglePlaySingleNews(this)">🔊 सुनें</button>
                     <button class="action-btn btn-save" onclick='toggleBookmark(${JSON.stringify(item).replace(/'/g, "&#39;")}, this)'>${saveBtnText}</button>
                     <button class="action-btn btn-share" onclick="shareNews('${safeTitle}')">🔗 Share</button>
                     <a href="${item.link}" target="_blank" class="action-btn btn-read">मूल खबर ➔</a>
@@ -531,10 +563,7 @@
                 btnElement.innerText = "❌ Remove";
             }
             localStorage.setItem('tb_saved_news', JSON.stringify(savedList));
-            
-            if(document.getElementById('savedNewsView').style.display === 'block'){
-                showSavedNewsPage();
-            }
+            if(document.getElementById('savedNewsView').style.display === 'block') showSavedNewsPage();
         }
 
         function showSavedNewsPage() {
@@ -547,14 +576,11 @@
             const grid = document.getElementById('savedNewsGrid');
             grid.innerHTML = "";
             let savedList = JSON.parse(localStorage.getItem('tb_saved_news')) || [];
-            
             if(savedList.length === 0) {
                 grid.innerHTML = "<p style='grid-column: 1/-1; text-align:center; color:#64748b; margin-top:20px;'>आपने अभी तक कोई न्यूज़ सेव नहीं की है।</p>";
                 return;
             }
-            savedList.forEach(item => {
-                grid.appendChild(createNewsCard(item));
-            });
+            savedList.forEach(item => grid.appendChild(createNewsCard(item)));
         }
 
         function shareNews(title) {
@@ -601,7 +627,7 @@
             }
             chatBody.scrollTop = chatBody.scrollHeight;
         }
-</script>
+    </script>
     <script type="text/javascript">
     var Tawk_API = Tawk_API || {};
     Tawk_API.customStyle = {
