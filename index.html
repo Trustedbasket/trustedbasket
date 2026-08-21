@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
+    <!-- ========================================== -->
+    <!-- ⚙️ SECTION 1: META TAGS & SETTINGS -->
+    <!-- ========================================== -->
     <meta property="og:image" content="https://raw.githubusercontent.com/Trustedbasket/trustedbasket/main/banner.jpg">
     <meta property="og:site_name" content="TrustedBasket">
     <meta property="og:title" content="Current Affairs, GOV/PSU Jobs, Rules & Banking News">
     <meta property="og:description" content="Sabse pahle, AI Summary ke sath aapki bhasha mein.">
     <meta property="og:url" content="https://trustedbasket.github.io/trustedbasket/">
-
-    <!-- 🚀 Link Sharing Card (WhatsApp/Telegram Preview) -->
     <meta name="description" content="Sabse pahle, AI Summary ke sath aapki bhasha mein. 3 aasan point mein AI vyakhya.">
     <meta name="twitter:card" content="summary_large_image">
-
-    <!-- 📱 Add to Home Screen (App Shortcut) -->
     <link rel="icon" href="logo.png">
     <link rel="apple-touch-icon" href="logo.png">
     <link rel="manifest" href="manifest.json">
@@ -21,7 +20,6 @@
     <title>TrustedBasket | Free* AI Alert Platform</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     
-    <!-- 🚀 Google Analytics Code -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-M8NL11TPWH"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -29,8 +27,6 @@
       gtag('js', new Date());
       gtag('config', 'G-M8NL11TPWH');
     </script>
-
-    <!-- 🚀 OneSignal Web Push Notifications -->
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script>
       window.OneSignalDeferred = window.OneSignalDeferred || [];
@@ -39,6 +35,9 @@
       });
     </script>
 
+    <!-- ========================================== -->
+    <!-- 🎨 SECTION 2: CSS STYLESHEET (डिज़ाइन) -->
+    <!-- ========================================== -->
     <style>
         html, body { margin: 0; padding: 0; width: 100%; overflow-x: hidden; }
         * { box-sizing: border-box; }
@@ -144,6 +143,9 @@
 </head>
 <body>
 
+    <!-- ========================================== -->
+    <!-- 🌐 SECTION 3: NAVIGATION BAR -->
+    <!-- ========================================== -->
     <nav>
         <div class="nav-left-section">
             <div class="menu-container">
@@ -170,19 +172,26 @@
         </div>
     </nav>
 
-    <!-- HOME VIEW -->
+    <!-- ========================================== -->
+    <!-- 🏠 SECTION 4: HOME PAGE (HERO & AGE CALC) -->
+    <!-- ========================================== -->
     <div id="homeView">
         <section class="hero">
             <h1 id="heroH1">इंटरनेट के अनावश्यक शोर से बचें और केवल प्रामाणिक जानकारी पाएं</h1>
             <p id="heroP">TrustedBasket एक फ्री* सॉफ्टवेयर है। अपनी रुचियों का चयन करें और हमारा एडवांस्ड AI आपको हर महत्वपूर्ण अपडेट की सटीक* व्याख्या (Analysis) प्रदान करेगा।</p>
         </section>
 
-        <!-- 🔥 Age Calculator: Clean Simple Input -->
         <section class="age-calc-section">
             <h3 style="color: var(--dark-pink); margin-bottom: 15px;">⏳ Age Calculator (उम्र निकालें)</h3>
             <div class="age-calc-box">
-                <div class="input-group"><label>जन्म तिथि (DOB):</label><br><input type="date" id="dobInput"></div>
-                <div class="input-group"><label>किस तारीख तक (As on):</label><br><input type="date" id="asOnDate"></div>
+                <div class="input-group">
+                    <label>जन्म तिथि (DOB):</label><br>
+                    <input type="text" id="dobInput" placeholder="DD/MM/YYYY" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+                </div>
+                <div class="input-group">
+                    <label>किस तारीख तक (As on):</label><br>
+                    <input type="text" id="asOnDate" placeholder="DD/MM/YYYY" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+                </div>
                 <button class="btn-calc" onclick="calculateAge()">Calculate Age</button>
             </div>
             <div id="ageResult"></div>
@@ -226,10 +235,10 @@
         </section>
     </div>
 
-    <!-- NEWS FEED VIEW -->
+    <!-- ========================================== -->
+    <!-- 📰 SECTION 5: NEWS FEED PAGE & WEATHER -->
+    <!-- ========================================== -->
     <div id="newsFeedView" class="page-view-container">
-        
-        <!-- 📍 Weather Box With Warning -->
         <div id="weatherBox" style="display: none; background: white; padding: 15px; border-radius: 10px; border: 1px solid #fce7f3; margin-bottom: 25px; width: 100%;">
             <h4 style="margin: 0 0 10px 0; color: var(--dark-pink);">📍 अपने शहर का मौसम देखें (Live)</h4>
             <div style="display:flex; gap:10px;">
@@ -243,7 +252,6 @@
         <div class="feed-header">
             <div class="feed-header-top">
                 <h2 id="feedCategoryTitle" style="color: var(--dark-pink); margin: 0;">Category Feed</h2>
-                <!-- 📅 Plain Date Format -->
                 <div id="dynamicDayDate" style="font-size: 14px; font-weight: bold; color: var(--primary); margin-top: 5px; display: none;"></div>
             </div>
             <div class="feed-header-bottom">
@@ -256,7 +264,9 @@
         <div class="news-grid" id="categoryNewsGrid"></div>
     </div>
 
-    <!-- SAVED NEWS VIEW -->
+    <!-- ========================================== -->
+    <!-- 🔖 SECTION 6: SAVED NEWS PAGE -->
+    <!-- ========================================== -->
     <div id="savedNewsView" class="page-view-container">
         <div class="feed-header">
             <h2 style="color: var(--dark-pink); margin: 0;">🔖 Saved News</h2>
@@ -265,6 +275,9 @@
         <div class="news-grid" id="savedNewsGrid"></div>
     </div>
 
+    <!-- ========================================== -->
+    <!-- 📢 SECTION 7: BANNERS & FOOTER -->
+    <!-- ========================================== -->
     <div class="banner-container">
         <section class="donation-banner">
             <h3>💖 Support* & Social Welfare</h3>
@@ -290,7 +303,9 @@
         </div>
     </footer>
 
-    <!-- Universal AI Chat Modal -->
+    <!-- ========================================== -->
+    <!-- 📜 SECTION 8: MODALS (ABOUT, T&C, CHATBOT) -->
+    <!-- ========================================== -->
     <div id="aiChatModal" class="chat-modal">
         <div class="chat-header">
             <span>🤖 TrustedBasket AI Assistant</span>
@@ -308,7 +323,6 @@
 
     <div class="modal-overlay" id="tcOverlay" onclick="closeModals()"></div>
     
-    <!-- ORIGINAL ABOUT SECTION -->
     <div class="tc-modal" id="aboutModal">
         <h3 style="color: var(--dark-pink); margin-top: 0;">ℹ️ About TrustedBasket</h3>
         <hr style="border: 0; border-top: 1px solid #fce7f3; margin-bottom: 15px;">
@@ -319,7 +333,6 @@
         <button onclick="closeModals()" style="background: var(--dark-pink); color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; float: right; margin-top: 10px;">बंद करें (Close)</button>
     </div>
 
-    <!-- ORIGINAL T&C WITH PRIVACY & WEATHER -->
     <div class="tc-modal" id="tcModal">
         <h3 style="color: var(--dark-pink); margin-top: 0;">📜 Terms, Conditions & Privacy (नियम एवं शर्तें)</h3>
         <hr style="border: 0; border-top: 1px solid #fce7f3; margin-bottom: 15px;">
@@ -333,7 +346,9 @@
         <button onclick="closeModals()" style="background: var(--dark-pink); color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; float: right; margin-top: 10px;">बंद करें (Close)</button>
     </div>
 
-    <!-- Google Translate Script -->
+    <!-- ========================================== -->
+    <!-- ⚙️ SECTION 9: JAVASCRIPT TRANSLATION -->
+    <!-- ========================================== -->
     <script type="text/javascript">
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({ pageLanguage: 'hi', includedLanguages: 'hi,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
@@ -345,7 +360,6 @@
         const API_URL = "https://script.google.com/macros/s/AKfycbxsZUO5AyLKL0Zc1Wh0HL05HDFeevJYBYHlhBn6MJzGAVvc54R2DapF2b8xXq9xE7IrxQ/exec";
         let newsCache = {};
         
-        // 🌐 PERFECT LANGUAGE TRANSLATOR FIX
         window.addEventListener('load', () => {
             const savedLang = localStorage.getItem('tb_lang') || 'hi';
             document.getElementById('langSelect').value = savedLang;
@@ -361,8 +375,20 @@
                     gtCombo.dispatchEvent(new Event('change'));
                 }
             }
+            
+            const btnPlayAll = document.getElementById('playAllBtn');
+            if(lang === 'en') {
+                document.getElementById('heroH1').innerText = "Avoid Internet Noise and Get Only Authentic Information";
+                if(btnPlayAll && !btnPlayAll.classList.contains('playing')) btnPlayAll.innerText = "🔊 Listen All News";
+            } else {
+                document.getElementById('heroH1').innerText = "इंटरनेट के अनावश्यक शोर से बचें और केवल प्रामाणिक जानकारी पाएं";
+                if(btnPlayAll && !btnPlayAll.classList.contains('playing')) btnPlayAll.innerText = "🔊 सभी ख़बरें सुनें";
+            }
         }
 
+        // ==========================================
+        // 🌦️ SECTION 10: JAVASCRIPT WEATHER API
+        // ==========================================
         async function getLiveWeather() {
             const city = document.getElementById('cityInput').value.trim();
             const resBox = document.getElementById('weatherResult');
@@ -389,6 +415,9 @@
             }
         }
 
+        // ==========================================
+        // 🔊 SECTION 11: JAVASCRIPT AUDIO API
+        // ==========================================
         let currentUtterance = null;
         function stopAudio() {
             if (window.speechSynthesis && window.speechSynthesis.speaking) {
@@ -400,7 +429,8 @@
             });
             let playAllBtn = document.getElementById('playAllBtn');
             if(playAllBtn) {
-                playAllBtn.innerHTML = "🔊 सभी ख़बरें सुनें";
+                let isEng = document.getElementById('langSelect').value === 'en';
+                playAllBtn.innerHTML = isEng ? "🔊 Listen All News" : "🔊 सभी ख़बरें सुनें";
                 playAllBtn.classList.remove('playing');
             }
         }
@@ -442,6 +472,9 @@
             triggerSpeech(fullText, btnElement);
         }
 
+        // ==========================================
+        // 🔄 SECTION 12: JAVASCRIPT NAVIGATION & LOGIC
+        // ==========================================
         function toggleNavMenu() {
             const menu = document.getElementById('navDropdown');
             menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
@@ -528,7 +561,6 @@
             let saveBtnText = isSaved ? '❌ Remove' : '🔖 Save';
             let safeTitle = item.title.replace(/'/g, "&#39;").replace(/"/g, "&quot;");
             
-            // ❌ No Date printed here anymore
             card.innerHTML = `
                 <div class="category-badge">${item.category}</div>
                 <div class="news-title">${item.title}</div>
@@ -620,6 +652,10 @@
             chatBody.scrollTop = chatBody.scrollHeight;
         }
     </script>
+
+    <!-- ========================================== -->
+    <!-- 💬 SECTION 13: EXTERNAL SCRIPTS (Tawk.to) -->
+    <!-- ========================================== -->
     <script type="text/javascript">
     var Tawk_API = Tawk_API || {};
     Tawk_API.customStyle = {
