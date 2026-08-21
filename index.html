@@ -788,11 +788,24 @@
             chatBody.scrollTop = chatBody.scrollHeight;
         }
 
-                // 🚀 Language Toggle Feature
-        function toggleLang(lang) {
+                // 🚀 Language Toggle & Google Translate Sync Logic
+        function toggleLang(lang, userTriggered = true) {
+            if (userTriggered) {
+                localStorage.setItem('tb_lang', lang);
+            }
+            
+            // 🔥 जादू यहाँ है: आपके डिब्बे से छुपे हुए Google डिब्बे को कंट्रोल करना
+            var gtCombo = document.querySelector('.goog-te-combo');
+            if (gtCombo && gtCombo.value !== lang) {
+                gtCombo.value = lang;
+                gtCombo.dispatchEvent(new Event('change'));
+            }
+
             const backBtn1 = document.getElementById('backBtnNews');
             const backBtn2 = document.getElementById('backBtnSaved');
             const loadingText = document.getElementById('loadingText');
+            const playAllBtn = document.getElementById('playAllBtn');
+            
             const playAllBtn = document.getElementById('playAllBtn'); // ऑडियो बटन जोड़ा गया
             
             if(lang === 'en') {
