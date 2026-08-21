@@ -797,6 +797,9 @@
         function toggleLang(lang, userTriggered = true) {
             if (userTriggered) {
                 localStorage.setItem('tb_lang', lang);
+                // 🔥 English भूलने की बीमारी का इलाज (Force Google Cookies)
+                document.cookie = "googtrans=/hi/" + lang + "; path=/";
+                document.cookie = "googtrans=/hi/" + lang + "; domain=." + document.domain + "; path=/";
             }
             
             // 🔥 जादू यहाँ है: आपके डिब्बे से छुपे हुए Google डिब्बे को कंट्रोल करना
