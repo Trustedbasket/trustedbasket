@@ -777,13 +777,34 @@
             chatBody.scrollTop = chatBody.scrollHeight;
         }
 
-        // 🚀 Language Toggle Feature
+                // 🚀 Language Toggle Feature
         function toggleLang(lang) {
             const backBtn1 = document.getElementById('backBtnNews');
             const backBtn2 = document.getElementById('backBtnSaved');
             const loadingText = document.getElementById('loadingText');
+            const playAllBtn = document.getElementById('playAllBtn'); // ऑडियो बटन जोड़ा गया
             
             if(lang === 'en') {
+                document.getElementById('heroH1').innerText = "Avoid Internet Noise and Get Only Authentic Information";
+                document.getElementById('heroP').innerText = "TrustedBasket is a free* software. Select your interests and our advanced AI provides accurate* analysis.";
+                document.getElementById('interestTitle').innerText = "Select your interests";
+                document.getElementById('interestDesc').innerText = "Click on any category to view the latest news:";
+                if(backBtn1) backBtn1.innerText = "← Back to Home";
+                if(backBtn2) backBtn2.innerText = "← Back to Home";
+                if(loadingText) loadingText.innerText = "Loading latest news... ⏳";
+                if(playAllBtn && !playAllBtn.classList.contains('playing')) playAllBtn.innerText = "🔊 Listen All News";
+            } else {
+                document.getElementById('heroH1').innerText = "इंटरनेट के अनावश्यक शोर से बचें और केवल प्रामाणिक जानकारी पाएं";
+                document.getElementById('heroP').innerText = "TrustedBasket एक फ्री* सॉफ्टवेयर है। अपनी रुचियों का चयन करें और हमारा एडवांस्ड AI आपको हर महत्वपूर्ण अपडेट की सटीक* व्याख्या (Analysis) प्रदान करेगा।";
+                document.getElementById('interestTitle').innerText = "अपनी रुचियों का चयन करें";
+                document.getElementById('interestDesc').innerText = "किसी भी श्रेणी पर क्लिक करके उसकी ताज़ा खबरें देखें:";
+                if(backBtn1) backBtn1.innerText = "← मुख्य पृष्ठ पर लौटें (Back)";
+                if(backBtn2) backBtn2.innerText = "← मुख्य पृष्ठ पर लौटें (Back)";
+                if(loadingText) loadingText.innerText = "ताज़ा खबरें लोड हो रही हैं... ⏳";
+                if(playAllBtn && !playAllBtn.classList.contains('playing')) playAllBtn.innerText = "🔊 पूरी ख़बरें सुनें";
+            }
+        } 
+
                 document.getElementById('heroH1').innerText = "Avoid Internet Noise and Get Only Authentic Information";
                 document.getElementById('heroP').innerText = "TrustedBasket is a free* software. Select your interests and our advanced AI provides accurate* analysis.";
                 document.getElementById('interestTitle').innerText = "Select your interests";
