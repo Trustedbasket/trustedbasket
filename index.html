@@ -610,11 +610,89 @@
                     <a href="${item.link}" target="_blank" class="action-btn btn-read">मूल खबर ➔</a>
                 </div>
             `;
-            return card;
+                        return card;
+        }
+
+        // 🔊 SMART AUDIO API LOGIC (PLAY/STOP TOGGLE)
+        let currentUtterance = null;
+        
+        function stopAudio() {
+            if (window.speechSynthesis && window.speechSynthesis.speaking) {
+                window.speechSynthesis.cancel();
+            }
+            // Reset all single buttons
+            document.querySelectorAll('.btn-listen').forEach(b => {
+                let isEng = document.getElementById('langSelect').value === 'en';
+                b.innerHTML = isEng ? "🔊 Listen" : "🔊 सुनें";
+                b.style.color = "var(--dark-pink)";
+                b.classList.remove('playing');
+            });
+            // Reset main Play All button
+            let playAllBtn = document.getElementById('playAllBtn');
+            if(playAllBtn) {
+                let isEng = document.getElementById('langSelect').value === 'en';
+                playAllBtn.innerHTML = isEng ? "🔊 Listen All News" : "🔊 पूरी ख़बरें सुनें";
+                playAllBtn.style.background = "var(--green)";
+                playAllBtn.classList.remove('playing');
+            }
+        }
+
+        function triggerSpeech(text, btnElement, isPlayAll = false) {
+            let isEng = document.getElementById('langSelect').value === 'en';
+            
+            // अगर पहले से चल रहा है और उसी बटन को दबाया, तो बंद करें
+            if (btnElement.classList.contains('playing')) {
+                stopAudio();
+                return; 
+            }
+            
+            stopAudio(); // नई खबर चलाने से पहले पुरानी बंद करें
+            
+            currentUtterance = new SpeechSynthesisUtterance(text);
+            currentUtterance.lang = isEng ? 'en-IN' : 'hi-IN';
+            currentUtterance.rate = 0.95; // पढ़ने की स्पीड
+            currentUtterance.onend = function() { stopAudio(); };
+            
+            btnElement.classList.add('playing');
+            
+            // बटन का नाम "बंद करें / रोकें" में बदलना
+            if (isPlayAll) {
+                btnElement.innerHTML = isEng ? "⏹️ Stop Audio" : "⏹️ ऑडियो बंद करें";
+                btnElement.style.background = "#ef4444"; // Red color
+            } else {
+                btnElement.innerHTML = isEng ? "⏹️ Stop" : "⏹️ रोकें";
+                btnElement.style.color = "#ef4444"; // Red color
+            }
+            
+            window.speechSynthesis.speak(currentUtterance);
+        }
+
+        function togglePlaySingleNews(btnElement) {
+            let card = btnElement.closest('.news-card');
+            let title = card.querySelector('.news-title').innerText;
+            let summary = card.querySelector('.news-summary').innerText;
+            triggerSpeech(title + ". " + summary, btnElement, false);
+        }
+
+        function togglePlayAllNews(btnElement) {
+            var cards = document.querySelectorAll('#categoryNewsGrid .news-card');
+            if(cards.length === 0) return;
+            
+            let isEng = document.getElementById('langSelect').value === 'en';
+            var fullText = isEng ? "Top updates starting. " : "आज की ताज़ा ख़बरें शुरू हो रही हैं। . ";
+            
+            cards.forEach((card, index) => {
+                var title = card.querySelector('.news-title').innerText;
+                var summary = card.querySelector('.news-summary').innerText;
+                fullText += (isEng ? `News Number ${index + 1}: ` : `खबर नंबर ${index + 1}: `) + `${title}. ${summary}. `;
+            });
+            
+            triggerSpeech(fullText, btnElement, true);
         }
 
         // 🚀 Toggle Bookmark / Remove
         function toggleBookmark(item, btnElement) {
+
             let savedList = JSON.parse(localStorage.getItem('tb_saved_news')) || [];
             const existingIndex = savedList.findIndex(savedItem => savedItem.title === item.title);
             
