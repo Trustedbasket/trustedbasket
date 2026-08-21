@@ -388,9 +388,23 @@
     <script>
         // 🚀 Real API URL
         const API_URL = "https://script.google.com/macros/s/AKfycbxsZUO5AyLKL0Zc1Wh0HL05HDFeevJYBYHlhBn6MJzGAVvc54R2DapF2b8xXq9xE7IrxQ/exec";
-        
-        // 1. allNewsData की जगह newsCache ऑब्जेक्ट बनाएँ (सुपरफास्ट स्पीड के लिए)
+
+                // 1. allNewsData की जगह newsCache ऑब्जेक्ट बनाएँ (सुपरफास्ट स्पीड के लिए)
         let newsCache = {};
+
+        // 🚀 Language Auto-Save & Dynamic Date on Load
+        window.addEventListener('load', () => {
+            const savedLang = localStorage.getItem('tb_lang') || 'hi';
+            document.getElementById('langSelect').value = savedLang;
+            setTimeout(() => { toggleLang(savedLang, false); }, 1500);
+            
+            // 🔥 होम पेज पर 'आज की तारीख़' दिखाने का लॉजिक
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const homeDateEl = document.getElementById('homeDynamicDate');
+            if(homeDateEl) {
+                homeDateEl.innerText = "आज: " + new Date().toLocaleDateString('hi-IN', options);
+            }
+        });
 
         // 🚀 Dropdown Menu Logic (Click outside to close)
         function toggleNavMenu() {
