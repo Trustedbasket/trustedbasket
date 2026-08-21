@@ -624,11 +624,9 @@
                         return card;
         }
 
-        // 🔊 SMART AUDIO API LOGIC (PLAY/STOP TOGGLE)
-        let currentUtterance = null;
-        
+                // 🔊 SMART AUDIO API LOGIC (PLAY/STOP TOGGLE WITH QUEUE)
         function stopAudio() {
-            if (window.speechSynthesis && window.speechSynthesis.speaking) {
+            if (window.speechSynthesis) {
                 window.speechSynthesis.cancel();
             }
             // Reset all single buttons
@@ -648,39 +646,41 @@
             }
         }
 
-        function triggerSpeech(text, btnElement, isPlayAll = false) {
-            let isEng = document.getElementById('langSelect').value === 'en';
+        function triggerSpeech(textData, btnElement, isPlayAll = false) {
+            let selectedLang = document.getElementById('langSelect').value || 'hi';
+            let langMap = { 'hi': 'hi-IN', 'en': 'en-IN', 'bn': 'bn-IN', 'mr': 'mr-IN', 'gu': 'gu-IN', 'ta': 'ta-IN', 'te': 'te-IN' };
+            let isEng = selectedLang === 'en';
             
-            // अगर पहले से चल रहा है और उसी बटन को दबाया, तो बंद करें
+            // अगर प्ले हो रहा है, तो बंद करें
             if (btnElement.classList.contains('playing')) {
                 stopAudio();
                 return; 
             }
-
-                        stopAudio(); // नई खबर चलाने से पहले पुरानी बंद करें
             
-            // 🔥 स्मार्ट लैंग्वेज मैपिंग (चुनी हुई भाषा का ऑडियो)
-            let langMap = { 'hi': 'hi-IN', 'en': 'en-IN', 'bn': 'bn-IN', 'mr': 'mr-IN', 'gu': 'gu-IN', 'ta': 'ta-IN', 'te': 'te-IN' };
-            let selectedLang = document.getElementById('langSelect').value;
-            
-            currentUtterance = new SpeechSynthesisUtterance(text);
-            currentUtterance.lang = langMap[selectedLang] || 'hi-IN';
-            currentUtterance.rate = 0.95; // पढ़ने की स्पीड
-
-            currentUtterance.onend = function() { stopAudio(); };
+            stopAudio(); // नया चलाने से पहले कतार साफ़ करें
             
             btnElement.classList.add('playing');
-            
-            // बटन का नाम "बंद करें / रोकें" में बदलना
             if (isPlayAll) {
                 btnElement.innerHTML = isEng ? "⏹️ Stop Audio" : "⏹️ ऑडियो बंद करें";
-                btnElement.style.background = "#ef4444"; // Red color
+                btnElement.style.background = "#ef4444"; 
             } else {
                 btnElement.innerHTML = isEng ? "⏹️ Stop" : "⏹️ रोकें";
-                btnElement.style.color = "#ef4444"; // Red color
+                btnElement.style.color = "#ef4444"; 
             }
             
-            window.speechSynthesis.speak(currentUtterance);
+            // 🔥 जादू: टेक्स्ट को एक-एक करके कतार (Queue) में लगाना ताकि ब्राउज़र क्रैश न हो
+            let texts = Array.isArray(textData) ? textData : [textData];
+            
+            texts.forEach((text, index) => {
+                let utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = langMap[selectedLang] || 'hi-IN';
+                utterance.rate = 0.95;
+                // आख़िरी खबर के बाद बटन को नार्मल कर दें
+                if(index === texts.length - 1) {
+                    utterance.onend = function() { stopAudio(); };
+                }
+                window.speechSynthesis.speak(utterance);
+            });
         }
 
         function togglePlaySingleNews(btnElement) {
@@ -694,16 +694,20 @@
             var cards = document.querySelectorAll('#categoryNewsGrid .news-card');
             if(cards.length === 0) return;
             
-            let isEng = document.getElementById('langSelect').value === 'en';
-            var fullText = isEng ? "Top updates starting. " : "आज की ताज़ा ख़बरें शुरू हो रही हैं। . ";
+            let selectedLang = document.getElementById('langSelect').value || 'hi';
+            let isEng = selectedLang === 'en';
+            
+            // ख़बरों को जोड़ने के बजाय Array (लिस्ट) में डालना
+            let textArray = [];
+            textArray.push(isEng ? "Top updates starting." : "आज की ताज़ा ख़बरें शुरू हो रही हैं।");
             
             cards.forEach((card, index) => {
                 var title = card.querySelector('.news-title').innerText;
                 var summary = card.querySelector('.news-summary').innerText;
-                fullText += (isEng ? `News Number ${index + 1}: ` : `खबर नंबर ${index + 1}: `) + `${title}. ${summary}. `;
+                textArray.push((isEng ? `News Number ${index + 1}: ` : `खबर नंबर ${index + 1}: `) + `${title}. ${summary}`);
             });
             
-            triggerSpeech(fullText, btnElement, true);
+            triggerSpeech(textArray, btnElement, true);
         }
 
         // 🚀 Toggle Bookmark / Remove
