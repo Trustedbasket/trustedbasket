@@ -65,10 +65,16 @@
         .sub-logo-info { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
         .tagline { font-size: 12px; font-weight: 600; color: #fbcfe8; }
         .nav-right-items { display: flex; align-items: center; margin-left: auto; gap: 10px; }
+
+                /* Custom Lang Selector Styling */
+        .lang-selector { background: white; color: var(--dark-pink); border: 2px solid var(--accent); padding: 8px 10px; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; outline: none; }
         
-        #google_translate_element select { background: white; color: var(--dark-pink); border: 2px solid var(--accent); padding: 8px 10px; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; outline: none; }
+        /* Hide Original Google Translate Widget & Banner */
+        #google_translate_element { position: absolute; opacity: 0; z-index: -10; pointer-events: none; }
+        .goog-te-banner-frame, iframe.goog-te-banner-frame { display: none !important; }
         
         .goog-te-balloon-frame { display: none !important; }
+
         .goog-tooltip, #goog-gt-tt, .goog-tooltip:hover { display: none !important; visibility: hidden !important; }
         .goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
         .goog-te-gadget { color: transparent !important; font-size: 0px !important; }
